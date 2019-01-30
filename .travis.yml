@@ -10,7 +10,14 @@ install:
 
 script:
 - node shins.js
-- sh push.sh
-env:
-  global:
-    secure: EOt0God0FFiKq7KXNVWDT3/O5If3qzImDtC1WNmJG+xLQcXnrXoaexgnmqR5ch/7CyqssA6kMFrc/OWLUXzSBeyPer8HXD+Xy/zFnzSVNL8AsxYw3uuWBCtz3b7MsSk9TS6MJfmIRa81Ydx7RsiFLUybyGJm0T3oiA19fUAHeSn5JIbS+ysVAcHEb5K14w0Qf68mRHKNu8qcyXWLQiKFi/hpbUc4w+bhgBPXTLPwoIpKRqteEUNSz+aztv3HIYgVFqSwQOWf9I3qvS0kkJdMPikcrHVhWnaWmFXRuILxQGtavRBtOp1g332jDkS+RQr59DgdlcIjDbXcHb/XJ5iVvjYtKmK/lUPXU5vNpBAwy2bK4frVnu+E1C9eIXnfTVxGlxsM++QZQsrGKHFWBVWAWABYfHPAhP9fJf/s1ViNRgmTiboC+qWr01YyjoY4tRlx6/cqTszK0inovZkqZ3L26shFYOgMaEPgqqFyIBKcP848ZIVT4bcZ9x00njb5L93eqdv8zDVnFz7B7fCWWqiXWG/3AZ/cuqPngfXL0bpGsjmNXQT+8bVAh/BkxOrRR0HPa/bp9788MoD8usVWS4btP5PSMZWFPoCA8bDpXLM0Z1Jc7fzNez7xH4l1cHmmZgPMSZDoXcu8L4/HQ55pAbo0oTVXO+RXOi/TZgwE+g5d6Ss=
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github-token: $GH_TOKEN
+  repo: tomochain/apidocs
+  local-dir: .
+  target-branch: gh-pages
+  fqdn: apidocs.tomochain.com
+  on:
+    branch: master
