@@ -3,7 +3,7 @@ title: TomoMaster APIs
 language_tabs:
   - shell: cURL
   - javascript--nodejs: Node.JS
-  - go: Go
+  - go: GO
   - ruby: Ruby
   - python: Python
 toc_footers: []
@@ -130,7 +130,6 @@ print r.json()
     "blockTime": 0
   },
   "explorerUrl": "string",
-  "grafanaUrl": "string",
   "GA": "string"
 }
 ```
@@ -144,149 +143,6 @@ print r.json()
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized|None|
 |406|[Not Acceptable](https://tools.ietf.org/html/rfc7231#section-6.5.6)|Not Acceptable|None|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Server Internal Error|None|
-
-<aside class="success">
-This operation does not require authentication
-</aside>
-
-<h1 id="tomomaster-apis-monitor">Monitor</h1>
-
-Get information for CPU and Memory charts
-
-## Get information for CPU and Memory charts
-
-> Code samples
-
-```shell
-# You can also use wget
-curl -X GET /api/monitor?db=string&q=string&epoch=string \
-  -H 'Accept: application/json'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json'
-
-};
-
-fetch('/api/monitor?db=string&q=string&epoch=string',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```go
-package main
-
-import (
-       "bytes"
-       "net/http"
-)
-
-func main() {
-
-    headers := map[string][]string{
-        "Accept": []string{"application/json"},
-        
-    }
-
-    data := bytes.NewBuffer([]byte{jsonReq})
-    req, err := http.NewRequest("GET", "/api/monitor", data)
-    req.Header = headers
-
-    client := &http.Client{}
-    resp, err := client.Do(req)
-    // ...
-}
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json'
-}
-
-result = RestClient.get '/api/monitor',
-  params: {
-  'db' => 'string',
-'q' => 'string',
-'epoch' => 'string'
-}, headers: headers
-
-p JSON.parse(result)
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json'
-}
-
-r = requests.get('/api/monitor', params={
-  'db': 'string',  'q': 'string',  'epoch': 'string'
-}, headers = headers)
-
-print r.json()
-
-```
-
-`GET /api/monitor`
-
-<h3 id="get-information-for-cpu-and-memory-charts-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|db|query|string|true|Database|
-|q|query|string|true|Query|
-|epoch|query|string|true|Epoch|
-
-> Example responses
-
-> 200 Response
-
-```json
-{
-  "series": [
-    {
-      "name": "cpu",
-      "column": [
-        [
-          "time",
-          "cpu_user"
-        ]
-      ],
-      "values": [
-        [
-          0,
-          1
-        ]
-      ]
-    }
-  ],
-  "statement_id": 0
-}
-```
-
-<h3 id="get-information-for-cpu-and-memory-charts-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|[monitor](#schemamonitor)|
 
 <aside class="success">
 This operation does not require authentication
@@ -1625,7 +1481,6 @@ This operation does not require authentication
     "blockTime": 0
   },
   "explorerUrl": "string",
-  "grafanaUrl": "string",
   "GA": "string"
 }
 
@@ -1641,53 +1496,7 @@ This operation does not require authentication
 |» epoch|number|false|none|Number of blocks for 1 epoch|
 |» blockTime|number|false|none|Block time|
 |explorerUrl|string|false|none|Tomoscan's API|
-|grafanaUrl|string|false|none|Grafana's API|
 |GA|string|false|none|Google Analytic code|
-
-<h2 id="tocSmonitor">monitor</h2>
-
-<a id="schemamonitor"></a>
-
-```json
-{
-  "series": [
-    {
-      "name": "cpu",
-      "column": [
-        [
-          "time",
-          "cpu_user"
-        ]
-      ],
-      "values": [
-        [
-          0,
-          1
-        ]
-      ]
-    }
-  ],
-  "statement_id": 0
-}
-
-```
-
-### Properties
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|series|[object]|false|none|Chart's information|
-|» name|string|false|none|Name|
-|» column|[string]|false|none|columns in db|
-|» values|[number]|false|none|Data of columns|
-|statement_id|number|false|none|id|
-
-#### Enumerated Values
-
-|Property|Value|
-|---|---|
-|name|cpu|
-|name|memory|
 
 <h2 id="tocScandidate">candidate</h2>
 
