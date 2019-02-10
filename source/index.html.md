@@ -1844,10 +1844,7 @@ curl https://rpc.tomochain.com \
 
 ### RESPONSE
 
-#### RESULT FIELDS
 - `BLOCK NUMBER` - a hex code of an integer representing the current block number the client is on.
-
-#### BODY
 
 ```js
 
