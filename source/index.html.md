@@ -1852,7 +1852,7 @@ Returns the current "latest" block number.
 `Content-Type: application/json`
 
 #### EXAMPLE
-```bash
+```shell
 ## JSON-RPC over HTTPS POST
 ## Replace YOUR-PROJECT-ID with a Project ID from your Infura Dashboard
 ## You can also replace mainnet with a different supported network
