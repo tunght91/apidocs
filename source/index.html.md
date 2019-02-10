@@ -1820,6 +1820,7 @@ This operation does not require authentication
 title: TomoChain APIs
 language_tabs:
   - shell: cURL
+
 toc_footers: []
 includes: []
 search: true
