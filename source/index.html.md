@@ -1833,15 +1833,7 @@ TomoChain Protocol
 
 Returns the current "latest" block number.
 
-### REQUEST
-
-`POST https://rpc.tomochain.com`
-
-#### HEADERS
-
-`Content-Type: application/json`
-
-#### EXAMPLE
+> Code samples
 
 ```shell
 curl https://rpc.tomochain.com \
