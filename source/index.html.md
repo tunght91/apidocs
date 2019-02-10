@@ -1816,3 +1816,69 @@ This operation does not require authentication
 |items|[object]|false|none|Candidate's transactions array|
 |total|number|false|none|Number of candidate|
 
+---
+title: TomoChain APIs
+language_tabs:
+  - shell: cURL
+toc_footers: []
+includes: []
+search: true
+highlight_theme: darkula
+headingLevel: 2
+
+---
+
+<h1 id="tomochain-apis">TomoChain APIs v1.0.0</h1>
+> Scroll down for code samples, example requests and responses. Select a language for code samples from the tabs above or the mobile navigation menu.
+
+Happy to code TomoChainAPIs
+
+License: <a href="https://github.com/tomochain/tomochain">Github</a>
+
+<h1 id="tomochain-apis-tomochain">TomoChain Protocol</h1>
+
+TomoChain Protocol
+
+## eth_blockNumber
+
+Returns the current "latest" block number.
+
+### REQUEST
+
+`POST https://rpc.tomochain.com`
+
+#### HEADERS
+
+`Content-Type: application/json`
+
+#### EXAMPLE
+```bash
+## JSON-RPC over HTTPS POST
+## Replace YOUR-PROJECT-ID with a Project ID from your Infura Dashboard
+## You can also replace mainnet with a different supported network
+curl https://mainnet.infura.io/v3/YOUR-PROJECT-ID \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_blockNumber","params": [],"id":1}'
+
+## JSON-RPC over websockets
+## Replace YOUR-PROJECT-ID with a Project ID from your Infura Dashboard
+## You can also replace mainnet with a different supported network
+wscat -c wss://mainnet.infura.io/ws/v3/YOUR-PROJECT-ID
+>{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}
+```
+
+### RESPONSE
+
+#### RESULT FIELDS
+- `BLOCK NUMBER` - a hex code of an integer representing the current block number the client is on.
+
+#### BODY
+
+```js
+
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": "0x65a8db"
+}
+```
