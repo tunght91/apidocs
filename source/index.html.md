@@ -1816,11 +1816,11 @@ This operation does not require authentication
 |items|[object]|false|none|Candidate's transactions array|
 |total|number|false|none|Number of candidate|
 
+
 ---
 title: TomoChain APIs
 language_tabs:
   - shell: cURL
-
 toc_footers: []
 includes: []
 search: true
