@@ -1846,6 +1846,10 @@ curl https://rpc.tomochain.com \
 
 - `BLOCK NUMBER` - a hex code of an integer representing the current block number the client is on.
 
+> Example responses
+
+> 200 Response
+
 ```js
 
   "jsonrpc": "2.0",
