@@ -1,0 +1,2938 @@
+
+
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>TomoMaster APIs</title>
+
+    <style>
+    </style>
+    <link rel="stylesheet" media="screen" href="pub/css/screen.css">
+    <link rel="stylesheet" media="print" href="pub/css/print.css">
+    <link rel="stylesheet" media="screen" href="pub/css/darkula.css">
+    
+      <script src="source/javascripts/lib/_jquery.js"></script>
+<script src="source/javascripts/lib/_jquery.highlight.js"></script>
+<script src="source/javascripts/lib/_lunr.js"></script>
+<script src="source/javascripts/lib/_imagesloaded.min.js"></script>
+<script src="source/javascripts/lib/_energize.js"></script>
+<script src="source/javascripts/app/_lang.js"></script>
+<script src="source/javascripts/app/_search.js"></script>
+<script src="source/javascripts/app/_toc.js"></script>
+<script type="text/javascript">
+$(function() {
+  loadToc($('#toc'), '.toc-link', '.toc-list-h2, .toc-list-h3, .toc-list-h4, .toc-list-h5, .toc-list-h6', 10);
+  setupLanguages($('body').data('languages'));
+  $('.content').imagesLoaded( function() {
+    recacheHeights();
+    refreshToc();
+  });
+});
+
+window.onpopstate = function() {
+  activateLanguage(getLanguageFromQueryString());
+};
+</script>
+
+    
+    <meta name="theme-color" content="#F3F7F9" />
+<!-- Renderer: Shins v2.3.2-3 -->
+  </head>
+
+  <body data-languages="[&quot;shell&quot;,&quot;javascript--nodejs&quot;,&quot;go&quot;,&quot;ruby&quot;,&quot;python&quot;]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="source/images/navbar.png" class="undefined" alt="Navigation">
+      </span>
+    </a>
+    <div class="toc-wrapper">
+      <img src="source/images/logo.png" class="logo" alt="Logo">
+      
+        <div class="lang-selector">
+          
+            
+              <a href="#" data-language-name="shell">cURL</a>
+            
+          
+            
+              <a href="#" data-language-name="javascript--nodejs">Node.JS</a>
+            
+          
+            
+              <a href="#" data-language-name="go">GO</a>
+            
+          
+            
+              <a href="#" data-language-name="ruby">Ruby</a>
+            
+          
+            
+              <a href="#" data-language-name="python">Python</a>
+            
+          
+        </div>
+      
+      
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      
+      <div id="toc" class="toc-list-h1">
+	  	<ul class="toc-list-h1">
+        
+          <li>
+            <a href="#tomochain-apis" class="toc-h1 toc-link" data-title="TomoChain APIs v1.0.0">TomoChain APIs v1.0.0</a>
+            
+          </li>
+        
+          <li>
+            <a href="#tomochain-apis-json-rpc" class="toc-h1 toc-link" data-title="JSON-RPC">JSON-RPC</a>
+            
+              <ul class="toc-list-h2">
+                
+                  <li>
+                    <a href="#eth_accounts" class="toc-h2 toc-link" data-title="eth_accounts">eth_accounts</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#eth_blocknumber" class="toc-h2 toc-link" data-title="eth_blockNumber">eth_blockNumber</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#eth_call" class="toc-h2 toc-link" data-title="eth_call">eth_call</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#eth_estimategas" class="toc-h2 toc-link" data-title="eth_estimateGas">eth_estimateGas</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#eth_gasprice" class="toc-h2 toc-link" data-title="eth_gasPrice">eth_gasPrice</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#eth_getbalance" class="toc-h2 toc-link" data-title="eth_getBalance">eth_getBalance</a>
+                    
+                  </li>
+                
+              </ul>
+            
+          </li>
+        
+          <li>
+            <a href="#tomomaster-apis" class="toc-h1 toc-link" data-title="TomoMaster APIs v1.0.0">TomoMaster APIs v1.0.0</a>
+            
+          </li>
+        
+          <li>
+            <a href="#tomomaster-apis-config" class="toc-h1 toc-link" data-title="Config">Config</a>
+            
+              <ul class="toc-list-h2">
+                
+                  <li>
+                    <a href="#get-tomomaster-application-configuration" class="toc-h2 toc-link" data-title="Get TomoMaster Application Configuration">Get TomoMaster Application Configuration</a>
+                    
+                  </li>
+                
+              </ul>
+            
+          </li>
+        
+          <li>
+            <a href="#tomomaster-apis-candidates" class="toc-h1 toc-link" data-title="Candidates">Candidates</a>
+            
+              <ul class="toc-list-h2">
+                
+                  <li>
+                    <a href="#get-candidates-information" class="toc-h2 toc-link" data-title="Get candidates information">Get candidates information</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#get-candidate-s-information" class="toc-h2 toc-link" data-title="Get candidate&#39;s information">Get candidate&#39;s information</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#get-voters-who-voted-for-the-candidate" class="toc-h2 toc-link" data-title="Get voters who voted for the candidate">Get voters who voted for the candidate</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#masternode-checking" class="toc-h2 toc-link" data-title="Masternode checking">Masternode checking</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#candidate-checking" class="toc-h2 toc-link" data-title="Candidate checking">Candidate checking</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#get-reward-of-candidate" class="toc-h2 toc-link" data-title="Get reward of candidate">Get reward of candidate</a>
+                    
+                  </li>
+                
+              </ul>
+            
+          </li>
+        
+          <li>
+            <a href="#tomomaster-apis-voters" class="toc-h1 toc-link" data-title="Voters">Voters</a>
+            
+              <ul class="toc-list-h2">
+                
+                  <li>
+                    <a href="#get-voted-candidates" class="toc-h2 toc-link" data-title="Get voted candidates">Get voted candidates</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#get-reward-of-voter" class="toc-h2 toc-link" data-title="Get reward of voter">Get reward of voter</a>
+                    
+                  </li>
+                
+              </ul>
+            
+          </li>
+        
+          <li>
+            <a href="#tomomaster-apis-transaction" class="toc-h1 toc-link" data-title="Transaction">Transaction</a>
+            
+              <ul class="toc-list-h2">
+                
+                  <li>
+                    <a href="#get-transactions-of-a-candidate" class="toc-h2 toc-link" data-title="Get transactions of a candidate">Get transactions of a candidate</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#get-transactions-of-a-voter" class="toc-h2 toc-link" data-title="Get transactions of a voter">Get transactions of a voter</a>
+                    
+                  </li>
+                
+              </ul>
+            
+          </li>
+        
+          <li>
+            <a href="#schemas" class="toc-h1 toc-link" data-title="Schemas">Schemas</a>
+            
+              <ul class="toc-list-h2">
+                
+                  <li>
+                    <a href="#tocsconfig" class="toc-h2 toc-link" data-title="config">config</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#tocscandidate" class="toc-h2 toc-link" data-title="candidate">candidate</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#tocscandidatedetail" class="toc-h2 toc-link" data-title="candidateDetail">candidateDetail</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#tocscandidaterewards" class="toc-h2 toc-link" data-title="candidateRewards">candidateRewards</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#tocscandidatevoter" class="toc-h2 toc-link" data-title="candidateVoter">candidateVoter</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#tocsvotercandidates" class="toc-h2 toc-link" data-title="voterCandidates">voterCandidates</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#tocsvoterrewards" class="toc-h2 toc-link" data-title="voterRewards">voterRewards</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#tocsismasternode" class="toc-h2 toc-link" data-title="isMasternode">isMasternode</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#tocsiscandidate" class="toc-h2 toc-link" data-title="isCandidate">isCandidate</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#tocstxcandidate" class="toc-h2 toc-link" data-title="txCandidate">txCandidate</a>
+                    
+                  </li>
+                
+                  <li>
+                    <a href="#tocstxvoter" class="toc-h2 toc-link" data-title="txVoter">txVoter</a>
+                    
+                  </li>
+                
+              </ul>
+            
+          </li>
+        
+		</ul>
+      </div>
+      
+        <ul class="toc-footer">
+          
+        </ul>
+      
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id="tomochain-apis">TomoChain APIs v1.0.0</h1>
+<blockquote>
+<p>Scroll down for code samples, example requests and responses. Select a language for code samples from the tabs above or the mobile navigation menu.</p>
+</blockquote>
+<p>Happy to code TomoChain APIs</p>
+<p>License: <a href="https://github.com/tomochain/tomochain">Github</a></p>
+<h1 id="tomochain-apis-json-rpc">JSON-RPC</h1>
+<p>TomoChain JSON-RPC Protocol</p>
+<h2 id="eth_accounts">eth_accounts</h2>
+<p>Returns a list of addresses owned by client.</p>
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+<pre class="highlight tab tab-shell"><code>curl https://rpc.tomochain.com \
+    -X POST \
+    -H <span class="hljs-string">"Content-Type: application/json"</span> \
+    <span class="hljs-_">-d</span> <span class="hljs-string">'{"jsonrpc":"2.0","method":"eth_accounts","params":[],"id":1}'</span>
+</code></pre>
+<h3 id="response">RESPONSE</h3>
+<h4 id="result-fields">RESULT FIELDS</h4>
+<ul>
+<li><code>ADDRESSES</code> - arrays of hex codes as strings representing the addresses owned by the client</li>
+</ul>
+<p>NOTE: While this JSON-RPC method is supported by Infura, it will <em>not</em> return any accounts.  Infura does not support &quot;unlocking&quot; accounts.  Instead, users should send already signed raw
+transactions using <code>eth_sendRawTransaction</code>.</p>
+<blockquote>
+<p>Example responses</p>
+</blockquote>
+<blockquote>
+<p>200 Response</p>
+</blockquote>
+<pre class="highlight tab tab-js"><code>{
+  <span class="hljs-string">"jsonrpc"</span>: <span class="hljs-string">"2.0"</span>,
+  <span class="hljs-string">"id"</span>: <span class="hljs-number">1</span>,
+  <span class="hljs-string">"result"</span>: []
+}
+</code></pre>
+<h2 id="eth_blocknumber">eth_blockNumber</h2>
+<p>Returns the current &quot;latest&quot; block number.</p>
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+<pre class="highlight tab tab-shell"><code>curl https://rpc.tomochain.com \
+    -X POST \
+    -H <span class="hljs-string">"Content-Type: application/json"</span> \
+    <span class="hljs-_">-d</span> <span class="hljs-string">'{"jsonrpc":"2.0","method":"eth_blockNumber","params": [],"id":1}'</span>
+</code></pre>
+<h3 id="response">RESPONSE</h3>
+<ul>
+<li><code>BLOCK NUMBER</code> - a hex code of an integer representing the current block number the client is on.</li>
+</ul>
+<blockquote>
+<p>Example responses</p>
+</blockquote>
+<blockquote>
+<p>200 Response</p>
+</blockquote>
+<pre class="highlight tab tab-js"><code>
+  <span class="hljs-string">"jsonrpc"</span>: <span class="hljs-string">"2.0"</span>,
+  <span class="hljs-string">"id"</span>: <span class="hljs-number">1</span>,
+  <span class="hljs-string">"result"</span>: <span class="hljs-string">"0x65a8db"</span>
+}
+</code></pre>
+<h2 id="eth_call">eth_call</h2>
+<p>Executes a new message call immediately without creating a transaction on the block chain.</p>
+<h4 id="request-payload">REQUEST PAYLOAD</h4>
+<ul>
+<li><code>TRANSACTION CALL OBJECT</code> <em>[required]</em></li>
+<li><code>from</code>:  <em>[optional]</em> 20 Bytes - The address the transaction is sent from.</li>
+<li><code>to</code>: 20 Bytes - The address the transaction is directed to.</li>
+<li><code>gas</code>: <em>[optional]</em> Integer of the gas provided for the transaction execution. eth_call consumes zero gas, but this parameter may be needed by some executions.</li>
+<li><code>gasPrice</code>: <em>[optional]</em> Integer of the gasPrice used for each paid gas</li>
+<li><code>value</code>: <em>[optional]</em> Integer of the value sent with this transaction</li>
+<li><code>data</code>: <em>[optional]</em> Hash of the method signature and encoded parameters. For details see Ethereum Contract ABI</li>
+<li><code>BLOCK PARAMETER</code> <em>[required]</em> - an integer block number, or the string &quot;latest&quot;, &quot;earliest&quot; or &quot;pending&quot;, see the <a href="https://github.com/ethereum/wiki/wiki/JSON-RPC#the-default-block-parameter">default block parameter</a></li>
+</ul>
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+<pre class="highlight tab tab-shell"><code>curl https://rpc.tomochain.com \
+    -X POST \
+    -H <span class="hljs-string">"Content-Type: application/json"</span> \
+    <span class="hljs-_">-d</span> <span class="hljs-string">'{"jsonrpc":"2.0","method":"eth_call","params": [{"from": "0xb60e8dd61c5d32be8058bb8eb970870f07233155","to": "0xd46e8dd67c5d32be8058bb8eb970870f07244567","gas": "0x76c0","gasPrice": "0x9184e72a000","value": "0x9184e72a","data": "0xd46e8dd67c5d32be8d46e8dd67c5d32be8058bb8eb970870f072445675058bb8eb970870f072445675"}, "latest"],"id":1}'</span>
+    
+</code></pre>
+<h3 id="response">RESPONSE</h3>
+<h4 id="result-fields">RESULT FIELDS</h4>
+<ul>
+<li><code>RETURN VALUE</code> - the return value of the executed contract method.</li>
+</ul>
+<blockquote>
+<p>Example responses</p>
+</blockquote>
+<blockquote>
+<p>200 Response</p>
+</blockquote>
+<pre class="highlight tab tab-json"><code>{
+  <span class="hljs-attr">"jsonrpc"</span>: <span class="hljs-string">"2.0"</span>,
+  <span class="hljs-attr">"id"</span>: <span class="hljs-number">1</span>,
+  <span class="hljs-attr">"result"</span>: <span class="hljs-string">"0x"</span>
+}
+</code></pre>
+<h2 id="eth_estimategas">eth_estimateGas</h2>
+<p>Generates and returns an estimate of how much gas is necessary to allow the transaction to complete. The transaction will not be added to the blockchain. Note that the estimate may be significantly more than the amount of gas actually used by the transaction, for a variety of reasons including EVM mechanics and node performance.</p>
+<h4 id="request-payload">REQUEST PAYLOAD</h4>
+<ul>
+<li><code>TRANSACTION CALL OBJECT</code> <em>[required]</em></li>
+<li><code>from</code>:  <em>[optional]</em> 20 Bytes - The address the transaction is sent from.</li>
+<li><code>to</code>: 20 Bytes - The address the transaction is directed to.</li>
+<li><code>gas</code>: <em>[optional]</em> Integer of the gas provided for the transaction execution. eth_estimateGas consumes zero gas, but this parameter may be needed by some executions.</li>
+<li><code>gasPrice</code>: <em>[optional]</em> Integer of the gasPrice used for each paid gas</li>
+<li><code>value</code>: <em>[optional]</em> Integer of the value sent with this transaction</li>
+<li><code>data</code>: <em>[optional]</em> Hash of the method signature and encoded parameters. For details see Ethereum Contract ABI</li>
+</ul>
+<p>If no gas limit is specified geth uses the block gas limit from the pending block as an upper bound. As a result the returned estimate might not be enough to executed the call/transaction when the amount of gas is higher than the pending block gas limit.</p>
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+<pre class="highlight tab tab-shell"><code>curl https://rpc.tomochain.com \
+    -X POST \
+    -H <span class="hljs-string">"Content-Type: application/json"</span> \
+    <span class="hljs-_">-d</span> <span class="hljs-string">'{"jsonrpc":"2.0","method":"eth_estimateGas","params": [{"from": "0xb60e8dd61c5d32be8058bb8eb970870f07233155","to": "0xd46e8dd67c5d32be8058bb8eb970870f07244567","gas": "0x76c0","gasPrice": "0x9184e72a000","value": "0x9184e72a","data": "0xd46e8dd67c5d32be8d46e8dd67c5d32be8058bb8eb970870f072445675058bb8eb970870f072445675"}],"id":1}'</span>
+
+</code></pre>
+<h3 id="response">RESPONSE</h3>
+<h4 id="result-fields">RESULT FIELDS</h4>
+<ul>
+<li><code>GAS USED</code> - the amount of gas used.</li>
+</ul>
+<blockquote>
+<p>Example response</p>
+</blockquote>
+<blockquote>
+<p>200 Response</p>
+</blockquote>
+<pre class="highlight tab tab-json"><code>{
+  <span class="hljs-attr">"jsonrpc"</span>: <span class="hljs-string">"2.0"</span>,
+  <span class="hljs-attr">"id"</span>: <span class="hljs-number">1</span>,
+  <span class="hljs-attr">"result"</span>: <span class="hljs-string">"0x5cec"</span>
+}
+</code></pre>
+<h2 id="eth_gasprice">eth_gasPrice</h2>
+<p>Returns the current gas price in wei.</p>
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+<pre class="highlight tab tab-shell"><code>curl https://rpc.tomochain.com \
+    -X POST \
+    -H <span class="hljs-string">"Content-Type: application/json"</span> \
+    <span class="hljs-_">-d</span> <span class="hljs-string">'{"jsonrpc":"2.0","method":"eth_gasPrice","params": [],"id":1}'</span>
+
+</code></pre>
+<h3 id="response">RESPONSE</h3>
+<h4 id="result-fields">RESULT FIELDS</h4>
+<ul>
+<li><code>GAS PRICE</code> - a hex code of an integer representing the current gas price in wei.</li>
+</ul>
+<blockquote>
+<p>Example response</p>
+</blockquote>
+<blockquote>
+<p>200 Response</p>
+</blockquote>
+<pre class="highlight tab tab-js"><code>{
+  <span class="hljs-string">"jsonrpc"</span>: <span class="hljs-string">"2.0"</span>,
+  <span class="hljs-string">"id"</span>: <span class="hljs-number">1</span>,
+  <span class="hljs-string">"result"</span>: <span class="hljs-string">"0x12a05f200"</span>
+}
+</code></pre>
+<h2 id="eth_getbalance">eth_getBalance</h2>
+<p>Returns the balance of the account of given address.</p>
+<h4 id="request-params">REQUEST PARAMS</h4>
+<ul>
+<li>
+<p><code>ADDRESS</code> <em>[required]</em> - a string representing the address (20 bytes) to check for balance</p>
+</li>
+<li>
+<p><code>BLOCK PARAMETER</code> <em>[required]</em> - an integer block number, or the string &quot;latest&quot;, &quot;earliest&quot; or &quot;pending&quot;, see the <a href="https://github.com/ethereum/wiki/wiki/JSON-RPC#the-default-block-parameter">default block parameter</a></p>
+</li>
+</ul>
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+<pre class="highlight tab tab-shell"><code>curl https://rpc.tomochain.com \
+    -X POST \
+    -H <span class="hljs-string">"Content-Type: application/json"</span> \
+    <span class="hljs-_">-d</span> <span class="hljs-string">'{"jsonrpc":"2.0","method":"eth_getBalance","params": ["0xc94770007dda54cF92009BFF0dE90c06F603a09f", "latest"],"id":1}'</span>
+
+</code></pre>
+<h3 id="response">RESPONSE</h3>
+<h4 id="result-fields">RESULT FIELDS</h4>
+<ul>
+<li><code>BALANCE</code> - integer of the current balance in wei.</li>
+</ul>
+<blockquote>
+<p>Example response</p>
+</blockquote>
+<blockquote>
+<p>200 Response</p>
+</blockquote>
+<pre class="highlight tab tab-json"><code>{
+  <span class="hljs-attr">"jsonrpc"</span>: <span class="hljs-string">"2.0"</span>,
+  <span class="hljs-attr">"id"</span>: <span class="hljs-number">1</span>,
+  <span class="hljs-attr">"result"</span>: <span class="hljs-string">"0x2fe84e3113d7b"</span>
+}
+</code></pre>
+<h1 id="tomomaster-apis">TomoMaster APIs v1.0.0</h1>
+<blockquote>
+<p>Scroll down for code samples, example requests and responses. Select a language for code samples from the tabs above or the mobile navigation menu.</p>
+</blockquote>
+<p>Happy to code TomoMaster APIs</p>
+<p>License: <a href="https://github.com/tomochain/tomomaster">Github</a></p>
+<h1 id="tomomaster-apis-config">Config</h1>
+<p>Get TomoMaster Application Configuration</p>
+<h2 id="get-tomomaster-application-configuration">Get TomoMaster Application Configuration</h2>
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+<pre class="highlight tab tab-shell"><code><span class="hljs-comment"># You can also use wget</span>
+curl -X GET /api/config \
+  -H <span class="hljs-string">'Accept: application/json'</span>
+
+</code></pre>
+<pre class="highlight tab tab-javascript--nodejs"><code><span class="hljs-keyword">const</span> fetch = <span class="hljs-built_in">require</span>(<span class="hljs-string">'node-fetch'</span>);
+
+<span class="hljs-keyword">const</span> headers = {
+  <span class="hljs-string">'Accept'</span>:<span class="hljs-string">'application/json'</span>
+
+};
+
+fetch(<span class="hljs-string">'/api/config'</span>,
+{
+  <span class="hljs-attr">method</span>: <span class="hljs-string">'GET'</span>,
+
+  <span class="hljs-attr">headers</span>: headers
+})
+.then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">res</span>) </span>{
+    <span class="hljs-keyword">return</span> res.json();
+}).then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">body</span>) </span>{
+    <span class="hljs-built_in">console</span>.log(body);
+});
+
+</code></pre>
+<pre class="highlight tab tab-go"><code><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+       <span class="hljs-string">"bytes"</span>
+       <span class="hljs-string">"net/http"</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> {
+
+    headers := <span class="hljs-keyword">map</span>[<span class="hljs-keyword">string</span>][]<span class="hljs-keyword">string</span>{
+        <span class="hljs-string">"Accept"</span>: []<span class="hljs-keyword">string</span>{<span class="hljs-string">"application/json"</span>},
+        
+    }
+
+    data := bytes.NewBuffer([]<span class="hljs-keyword">byte</span>{jsonReq})
+    req, err := http.NewRequest(<span class="hljs-string">"GET"</span>, <span class="hljs-string">"/api/config"</span>, data)
+    req.Header = headers
+
+    client := &amp;http.Client{}
+    resp, err := client.Do(req)
+    <span class="hljs-comment">// ...</span>
+}
+
+</code></pre>
+<pre class="highlight tab tab-ruby"><code><span class="hljs-keyword">require</span> <span class="hljs-string">'rest-client'</span>
+<span class="hljs-keyword">require</span> <span class="hljs-string">'json'</span>
+
+headers = {
+  <span class="hljs-string">'Accept'</span> =&gt; <span class="hljs-string">'application/json'</span>
+}
+
+result = RestClient.get <span class="hljs-string">'/api/config'</span>,
+  <span class="hljs-symbol">params:</span> {
+  }, <span class="hljs-symbol">headers:</span> headers
+
+p JSON.parse(result)
+
+</code></pre>
+<pre class="highlight tab tab-python"><code><span class="hljs-keyword">import</span> requests
+headers = {
+  <span class="hljs-string">'Accept'</span>: <span class="hljs-string">'application/json'</span>
+}
+
+r = requests.get(<span class="hljs-string">'/api/config'</span>, params={
+
+}, headers = headers)
+
+<span class="hljs-keyword">print</span> r.json()
+
+</code></pre>
+<p><code>GET /api/config</code></p>
+<blockquote>
+<p>Example responses</p>
+</blockquote>
+<blockquote>
+<p>200 Response</p>
+</blockquote>
+<pre class="highlight tab tab-json"><code>{
+  <span class="hljs-attr">"blockchain"</span>: {
+    <span class="hljs-attr">"rpc"</span>: <span class="hljs-string">"string"</span>,
+    <span class="hljs-attr">"ws"</span>: <span class="hljs-string">"string"</span>,
+    <span class="hljs-attr">"epoch"</span>: <span class="hljs-number">900</span>,
+    <span class="hljs-attr">"blockTime"</span>: <span class="hljs-number">0</span>
+  },
+  <span class="hljs-attr">"explorerUrl"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"GA"</span>: <span class="hljs-string">"string"</span>
+}
+</code></pre>
+<h3 id="get-tomomaster-application-configuration-responses">Responses</h3>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
+<td>OK</td>
+<td><a href="#schemaconfig">config</a></td>
+</tr>
+<tr>
+<td>400</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.1">Bad Request</a></td>
+<td>Bad Request</td>
+<td>None</td>
+</tr>
+<tr>
+<td>401</td>
+<td><a href="https://tools.ietf.org/html/rfc7235#section-3.1">Unauthorized</a></td>
+<td>Unauthorized</td>
+<td>None</td>
+</tr>
+<tr>
+<td>406</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.6">Not Acceptable</a></td>
+<td>Not Acceptable</td>
+<td>None</td>
+</tr>
+<tr>
+<td>500</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.6.1">Internal Server Error</a></td>
+<td>Server Internal Error</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<aside class="success">
+This operation does not require authentication
+</aside>
+<h1 id="tomomaster-apis-candidates">Candidates</h1>
+<p>Get Candidates information</p>
+<h2 id="get-candidates-information">Get candidates information</h2>
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+<pre class="highlight tab tab-shell"><code><span class="hljs-comment"># You can also use wget</span>
+curl -X GET /api/candidates \
+  -H <span class="hljs-string">'Accept: application/json'</span>
+
+</code></pre>
+<pre class="highlight tab tab-javascript--nodejs"><code><span class="hljs-keyword">const</span> fetch = <span class="hljs-built_in">require</span>(<span class="hljs-string">'node-fetch'</span>);
+
+<span class="hljs-keyword">const</span> headers = {
+  <span class="hljs-string">'Accept'</span>:<span class="hljs-string">'application/json'</span>
+
+};
+
+fetch(<span class="hljs-string">'/api/candidates'</span>,
+{
+  <span class="hljs-attr">method</span>: <span class="hljs-string">'GET'</span>,
+
+  <span class="hljs-attr">headers</span>: headers
+})
+.then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">res</span>) </span>{
+    <span class="hljs-keyword">return</span> res.json();
+}).then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">body</span>) </span>{
+    <span class="hljs-built_in">console</span>.log(body);
+});
+
+</code></pre>
+<pre class="highlight tab tab-go"><code><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+       <span class="hljs-string">"bytes"</span>
+       <span class="hljs-string">"net/http"</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> {
+
+    headers := <span class="hljs-keyword">map</span>[<span class="hljs-keyword">string</span>][]<span class="hljs-keyword">string</span>{
+        <span class="hljs-string">"Accept"</span>: []<span class="hljs-keyword">string</span>{<span class="hljs-string">"application/json"</span>},
+        
+    }
+
+    data := bytes.NewBuffer([]<span class="hljs-keyword">byte</span>{jsonReq})
+    req, err := http.NewRequest(<span class="hljs-string">"GET"</span>, <span class="hljs-string">"/api/candidates"</span>, data)
+    req.Header = headers
+
+    client := &amp;http.Client{}
+    resp, err := client.Do(req)
+    <span class="hljs-comment">// ...</span>
+}
+
+</code></pre>
+<pre class="highlight tab tab-ruby"><code><span class="hljs-keyword">require</span> <span class="hljs-string">'rest-client'</span>
+<span class="hljs-keyword">require</span> <span class="hljs-string">'json'</span>
+
+headers = {
+  <span class="hljs-string">'Accept'</span> =&gt; <span class="hljs-string">'application/json'</span>
+}
+
+result = RestClient.get <span class="hljs-string">'/api/candidates'</span>,
+  <span class="hljs-symbol">params:</span> {
+  }, <span class="hljs-symbol">headers:</span> headers
+
+p JSON.parse(result)
+
+</code></pre>
+<pre class="highlight tab tab-python"><code><span class="hljs-keyword">import</span> requests
+headers = {
+  <span class="hljs-string">'Accept'</span>: <span class="hljs-string">'application/json'</span>
+}
+
+r = requests.get(<span class="hljs-string">'/api/candidates'</span>, params={
+
+}, headers = headers)
+
+<span class="hljs-keyword">print</span> r.json()
+
+</code></pre>
+<p><code>GET /api/candidates</code></p>
+<h3 id="get-candidates-information-parameters">Parameters</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>limit</td>
+<td>query</td>
+<td>number</td>
+<td>false</td>
+<td>Number of record in a query</td>
+</tr>
+<tr>
+<td>page</td>
+<td>query</td>
+<td>number</td>
+<td>false</td>
+<td>Page number</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Example responses</p>
+</blockquote>
+<blockquote>
+<p>200 Response</p>
+</blockquote>
+<pre class="highlight tab tab-json"><code>{
+  <span class="hljs-attr">"items"</span>: [
+    {
+      <span class="hljs-attr">"_id"</span>: <span class="hljs-string">"123"</span>,
+      <span class="hljs-attr">"candidate"</span>: <span class="hljs-string">"0x11621900588eca4410c00097a9f59237f34064cd"</span>,
+      <span class="hljs-attr">"smartContractAddress"</span>: <span class="hljs-string">"0x0000000000000000000000000000000000000088"</span>,
+      <span class="hljs-attr">"__v"</span>: <span class="hljs-number">0</span>,
+      <span class="hljs-attr">"capacity"</span>: <span class="hljs-string">"91540333800000001000000"</span>,
+      <span class="hljs-attr">"createdAt"</span>: <span class="hljs-string">"2018-10-31T03:42:39.375Z"</span>,
+      <span class="hljs-attr">"owner"</span>: <span class="hljs-string">"0x11621900588eca4410c00097a9f59237f34064cd"</span>,
+      <span class="hljs-attr">"status"</span>: <span class="hljs-string">"RESIGNED"</span>,
+      <span class="hljs-attr">"updatedAt"</span>: <span class="hljs-string">"2019-01-11T09:21:55.028Z"</span>,
+      <span class="hljs-attr">"latestSignedBlock"</span>: <span class="hljs-number">2917487</span>,
+      <span class="hljs-attr">"capacityNumber"</span>: <span class="hljs-number">91540.33380000001</span>,
+      <span class="hljs-attr">"isMasternode"</span>: <span class="hljs-literal">false</span>,
+      <span class="hljs-attr">"isPenalty"</span>: <span class="hljs-literal">false</span>
+    }
+  ],
+  <span class="hljs-attr">"total"</span>: <span class="hljs-number">100</span>,
+  <span class="hljs-attr">"activeCandidates"</span>: <span class="hljs-number">10</span>
+}
+</code></pre>
+<h3 id="get-candidates-information-responses">Responses</h3>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
+<td>OK</td>
+<td><a href="#schemacandidate">candidate</a></td>
+</tr>
+<tr>
+<td>406</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.6">Not Acceptable</a></td>
+<td>Not Acceptable</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<aside class="success">
+This operation does not require authentication
+</aside>
+<h2 id="get-candidate-s-information">Get candidate's information</h2>
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+<pre class="highlight tab tab-shell"><code><span class="hljs-comment"># You can also use wget</span>
+curl -X GET /api/candidates/{candidate} \
+  -H <span class="hljs-string">'Accept: application/json'</span>
+
+</code></pre>
+<pre class="highlight tab tab-javascript--nodejs"><code><span class="hljs-keyword">const</span> fetch = <span class="hljs-built_in">require</span>(<span class="hljs-string">'node-fetch'</span>);
+
+<span class="hljs-keyword">const</span> headers = {
+  <span class="hljs-string">'Accept'</span>:<span class="hljs-string">'application/json'</span>
+
+};
+
+fetch(<span class="hljs-string">'/api/candidates/{candidate}'</span>,
+{
+  <span class="hljs-attr">method</span>: <span class="hljs-string">'GET'</span>,
+
+  <span class="hljs-attr">headers</span>: headers
+})
+.then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">res</span>) </span>{
+    <span class="hljs-keyword">return</span> res.json();
+}).then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">body</span>) </span>{
+    <span class="hljs-built_in">console</span>.log(body);
+});
+
+</code></pre>
+<pre class="highlight tab tab-go"><code><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+       <span class="hljs-string">"bytes"</span>
+       <span class="hljs-string">"net/http"</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> {
+
+    headers := <span class="hljs-keyword">map</span>[<span class="hljs-keyword">string</span>][]<span class="hljs-keyword">string</span>{
+        <span class="hljs-string">"Accept"</span>: []<span class="hljs-keyword">string</span>{<span class="hljs-string">"application/json"</span>},
+        
+    }
+
+    data := bytes.NewBuffer([]<span class="hljs-keyword">byte</span>{jsonReq})
+    req, err := http.NewRequest(<span class="hljs-string">"GET"</span>, <span class="hljs-string">"/api/candidates/{candidate}"</span>, data)
+    req.Header = headers
+
+    client := &amp;http.Client{}
+    resp, err := client.Do(req)
+    <span class="hljs-comment">// ...</span>
+}
+
+</code></pre>
+<pre class="highlight tab tab-ruby"><code><span class="hljs-keyword">require</span> <span class="hljs-string">'rest-client'</span>
+<span class="hljs-keyword">require</span> <span class="hljs-string">'json'</span>
+
+headers = {
+  <span class="hljs-string">'Accept'</span> =&gt; <span class="hljs-string">'application/json'</span>
+}
+
+result = RestClient.get <span class="hljs-string">'/api/candidates/{candidate}'</span>,
+  <span class="hljs-symbol">params:</span> {
+  }, <span class="hljs-symbol">headers:</span> headers
+
+p JSON.parse(result)
+
+</code></pre>
+<pre class="highlight tab tab-python"><code><span class="hljs-keyword">import</span> requests
+headers = {
+  <span class="hljs-string">'Accept'</span>: <span class="hljs-string">'application/json'</span>
+}
+
+r = requests.get(<span class="hljs-string">'/api/candidates/{candidate}'</span>, params={
+
+}, headers = headers)
+
+<span class="hljs-keyword">print</span> r.json()
+
+</code></pre>
+<p><code>GET /api/candidates/{candidate}</code></p>
+<h3 id="get-candidate-s-information-parameters">Parameters</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>candidate</td>
+<td>path</td>
+<td>string</td>
+<td>true</td>
+<td>candidate's address</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Example responses</p>
+</blockquote>
+<blockquote>
+<p>200 Response</p>
+</blockquote>
+<pre class="highlight tab tab-json"><code>{
+  <span class="hljs-attr">"_id"</span>: <span class="hljs-string">"123"</span>,
+  <span class="hljs-attr">"candidate"</span>: <span class="hljs-string">"0x11621900588eca4410c00097a9f59237f34064cd"</span>,
+  <span class="hljs-attr">"smartContractAddress"</span>: <span class="hljs-string">"0x0000000000000000000000000000000000000088"</span>,
+  <span class="hljs-attr">"__v"</span>: <span class="hljs-number">0</span>,
+  <span class="hljs-attr">"capacity"</span>: <span class="hljs-string">"91540333800000001000000"</span>,
+  <span class="hljs-attr">"createdAt"</span>: <span class="hljs-string">"2018-10-31T03:42:39.375Z"</span>,
+  <span class="hljs-attr">"owner"</span>: <span class="hljs-string">"0x11621900588eca4410c00097a9f59237f34064cd"</span>,
+  <span class="hljs-attr">"status"</span>: <span class="hljs-string">"RESIGNED"</span>,
+  <span class="hljs-attr">"updatedAt"</span>: <span class="hljs-string">"2019-01-11T09:17:59.535Z"</span>,
+  <span class="hljs-attr">"latestSignedBlock"</span>: <span class="hljs-string">"2917487"</span>,
+  <span class="hljs-attr">"capacityNumber"</span>: <span class="hljs-number">91540.33380000001</span>,
+  <span class="hljs-attr">"isMasternode"</span>: <span class="hljs-literal">false</span>,
+  <span class="hljs-attr">"isPenalty"</span>: <span class="hljs-literal">false</span>
+}
+</code></pre>
+<h3 id="get-candidate-s-information-responses">Responses</h3>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
+<td>OK</td>
+<td><a href="#schemacandidatedetail">candidateDetail</a></td>
+</tr>
+<tr>
+<td>406</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.6">Not Acceptable</a></td>
+<td>Not Acceptable</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<aside class="success">
+This operation does not require authentication
+</aside>
+<h2 id="get-voters-who-voted-for-the-candidate">Get voters who voted for the candidate</h2>
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+<pre class="highlight tab tab-shell"><code><span class="hljs-comment"># You can also use wget</span>
+curl -X GET /api/candidates/{candidate}/voters \
+  -H <span class="hljs-string">'Accept: application/json'</span>
+
+</code></pre>
+<pre class="highlight tab tab-javascript--nodejs"><code><span class="hljs-keyword">const</span> fetch = <span class="hljs-built_in">require</span>(<span class="hljs-string">'node-fetch'</span>);
+
+<span class="hljs-keyword">const</span> headers = {
+  <span class="hljs-string">'Accept'</span>:<span class="hljs-string">'application/json'</span>
+
+};
+
+fetch(<span class="hljs-string">'/api/candidates/{candidate}/voters'</span>,
+{
+  <span class="hljs-attr">method</span>: <span class="hljs-string">'GET'</span>,
+
+  <span class="hljs-attr">headers</span>: headers
+})
+.then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">res</span>) </span>{
+    <span class="hljs-keyword">return</span> res.json();
+}).then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">body</span>) </span>{
+    <span class="hljs-built_in">console</span>.log(body);
+});
+
+</code></pre>
+<pre class="highlight tab tab-go"><code><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+       <span class="hljs-string">"bytes"</span>
+       <span class="hljs-string">"net/http"</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> {
+
+    headers := <span class="hljs-keyword">map</span>[<span class="hljs-keyword">string</span>][]<span class="hljs-keyword">string</span>{
+        <span class="hljs-string">"Accept"</span>: []<span class="hljs-keyword">string</span>{<span class="hljs-string">"application/json"</span>},
+        
+    }
+
+    data := bytes.NewBuffer([]<span class="hljs-keyword">byte</span>{jsonReq})
+    req, err := http.NewRequest(<span class="hljs-string">"GET"</span>, <span class="hljs-string">"/api/candidates/{candidate}/voters"</span>, data)
+    req.Header = headers
+
+    client := &amp;http.Client{}
+    resp, err := client.Do(req)
+    <span class="hljs-comment">// ...</span>
+}
+
+</code></pre>
+<pre class="highlight tab tab-ruby"><code><span class="hljs-keyword">require</span> <span class="hljs-string">'rest-client'</span>
+<span class="hljs-keyword">require</span> <span class="hljs-string">'json'</span>
+
+headers = {
+  <span class="hljs-string">'Accept'</span> =&gt; <span class="hljs-string">'application/json'</span>
+}
+
+result = RestClient.get <span class="hljs-string">'/api/candidates/{candidate}/voters'</span>,
+  <span class="hljs-symbol">params:</span> {
+  }, <span class="hljs-symbol">headers:</span> headers
+
+p JSON.parse(result)
+
+</code></pre>
+<pre class="highlight tab tab-python"><code><span class="hljs-keyword">import</span> requests
+headers = {
+  <span class="hljs-string">'Accept'</span>: <span class="hljs-string">'application/json'</span>
+}
+
+r = requests.get(<span class="hljs-string">'/api/candidates/{candidate}/voters'</span>, params={
+
+}, headers = headers)
+
+<span class="hljs-keyword">print</span> r.json()
+
+</code></pre>
+<p><code>GET /api/candidates/{candidate}/voters</code></p>
+<h3 id="get-voters-who-voted-for-the-candidate-parameters">Parameters</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>candidate</td>
+<td>path</td>
+<td>string</td>
+<td>true</td>
+<td>candidate's address</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>query</td>
+<td>number</td>
+<td>false</td>
+<td>Number of record in a query</td>
+</tr>
+<tr>
+<td>page</td>
+<td>query</td>
+<td>number</td>
+<td>false</td>
+<td>Page number</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Example responses</p>
+</blockquote>
+<blockquote>
+<p>200 Response</p>
+</blockquote>
+<pre class="highlight tab tab-json"><code>{
+  <span class="hljs-attr">"items"</span>: [
+    {
+      <span class="hljs-attr">"_id"</span>: <span class="hljs-string">"5bd924a9aa41b819395d9207"</span>,
+      <span class="hljs-attr">"candidate"</span>: <span class="hljs-string">"0x11621900588eca4410c00097a9f59237f34064cd"</span>,
+      <span class="hljs-attr">"smartContractAddress"</span>: <span class="hljs-string">"0x0000000000000000000000000000000000000088"</span>,
+      <span class="hljs-attr">"voter"</span>: <span class="hljs-string">"0xf2cce442c7ab5baf194838081b5f9396330ecfb8"</span>,
+      <span class="hljs-attr">"__v"</span>: <span class="hljs-number">0</span>,
+      <span class="hljs-attr">"capacity"</span>: <span class="hljs-string">"105000000000000000000"</span>,
+      <span class="hljs-attr">"createdAt"</span>: <span class="hljs-string">"2018-10-31T03:42:33.922Z"</span>,
+      <span class="hljs-attr">"updatedAt"</span>: <span class="hljs-string">"2019-01-05T02:11:31.489Z"</span>,
+      <span class="hljs-attr">"capacityNumber"</span>: <span class="hljs-number">105</span>
+    }
+  ],
+  <span class="hljs-attr">"total"</span>: <span class="hljs-number">100</span>
+}
+</code></pre>
+<h3 id="get-voters-who-voted-for-the-candidate-responses">Responses</h3>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
+<td>OK</td>
+<td><a href="#schemacandidatevoter">candidateVoter</a></td>
+</tr>
+<tr>
+<td>406</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.6">Not Acceptable</a></td>
+<td>Not Acceptable</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<aside class="success">
+This operation does not require authentication
+</aside>
+<h2 id="masternode-checking">Masternode checking</h2>
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+<pre class="highlight tab tab-shell"><code><span class="hljs-comment"># You can also use wget</span>
+curl -X GET /api/candidates/{candidate}/isMasternode \
+  -H <span class="hljs-string">'Accept: application/json'</span>
+
+</code></pre>
+<pre class="highlight tab tab-javascript--nodejs"><code><span class="hljs-keyword">const</span> fetch = <span class="hljs-built_in">require</span>(<span class="hljs-string">'node-fetch'</span>);
+
+<span class="hljs-keyword">const</span> headers = {
+  <span class="hljs-string">'Accept'</span>:<span class="hljs-string">'application/json'</span>
+
+};
+
+fetch(<span class="hljs-string">'/api/candidates/{candidate}/isMasternode'</span>,
+{
+  <span class="hljs-attr">method</span>: <span class="hljs-string">'GET'</span>,
+
+  <span class="hljs-attr">headers</span>: headers
+})
+.then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">res</span>) </span>{
+    <span class="hljs-keyword">return</span> res.json();
+}).then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">body</span>) </span>{
+    <span class="hljs-built_in">console</span>.log(body);
+});
+
+</code></pre>
+<pre class="highlight tab tab-go"><code><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+       <span class="hljs-string">"bytes"</span>
+       <span class="hljs-string">"net/http"</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> {
+
+    headers := <span class="hljs-keyword">map</span>[<span class="hljs-keyword">string</span>][]<span class="hljs-keyword">string</span>{
+        <span class="hljs-string">"Accept"</span>: []<span class="hljs-keyword">string</span>{<span class="hljs-string">"application/json"</span>},
+        
+    }
+
+    data := bytes.NewBuffer([]<span class="hljs-keyword">byte</span>{jsonReq})
+    req, err := http.NewRequest(<span class="hljs-string">"GET"</span>, <span class="hljs-string">"/api/candidates/{candidate}/isMasternode"</span>, data)
+    req.Header = headers
+
+    client := &amp;http.Client{}
+    resp, err := client.Do(req)
+    <span class="hljs-comment">// ...</span>
+}
+
+</code></pre>
+<pre class="highlight tab tab-ruby"><code><span class="hljs-keyword">require</span> <span class="hljs-string">'rest-client'</span>
+<span class="hljs-keyword">require</span> <span class="hljs-string">'json'</span>
+
+headers = {
+  <span class="hljs-string">'Accept'</span> =&gt; <span class="hljs-string">'application/json'</span>
+}
+
+result = RestClient.get <span class="hljs-string">'/api/candidates/{candidate}/isMasternode'</span>,
+  <span class="hljs-symbol">params:</span> {
+  }, <span class="hljs-symbol">headers:</span> headers
+
+p JSON.parse(result)
+
+</code></pre>
+<pre class="highlight tab tab-python"><code><span class="hljs-keyword">import</span> requests
+headers = {
+  <span class="hljs-string">'Accept'</span>: <span class="hljs-string">'application/json'</span>
+}
+
+r = requests.get(<span class="hljs-string">'/api/candidates/{candidate}/isMasternode'</span>, params={
+
+}, headers = headers)
+
+<span class="hljs-keyword">print</span> r.json()
+
+</code></pre>
+<p><code>GET /api/candidates/{candidate}/isMasternode</code></p>
+<h3 id="masternode-checking-parameters">Parameters</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>candidate</td>
+<td>path</td>
+<td>string</td>
+<td>true</td>
+<td>candidate's address</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Example responses</p>
+</blockquote>
+<blockquote>
+<p>200 Response</p>
+</blockquote>
+<pre class="highlight tab tab-json"><code><span class="hljs-string">"1"</span>
+</code></pre>
+<h3 id="masternode-checking-responses">Responses</h3>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
+<td>OK</td>
+<td><a href="#schemaismasternode">isMasternode</a></td>
+</tr>
+<tr>
+<td>406</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.6">Not Acceptable</a></td>
+<td>Not Acceptable</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<aside class="success">
+This operation does not require authentication
+</aside>
+<h2 id="candidate-checking">Candidate checking</h2>
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+<pre class="highlight tab tab-shell"><code><span class="hljs-comment"># You can also use wget</span>
+curl -X GET /api/candidates/{candidate}/isCandidate \
+  -H <span class="hljs-string">'Accept: application/json'</span>
+
+</code></pre>
+<pre class="highlight tab tab-javascript--nodejs"><code><span class="hljs-keyword">const</span> fetch = <span class="hljs-built_in">require</span>(<span class="hljs-string">'node-fetch'</span>);
+
+<span class="hljs-keyword">const</span> headers = {
+  <span class="hljs-string">'Accept'</span>:<span class="hljs-string">'application/json'</span>
+
+};
+
+fetch(<span class="hljs-string">'/api/candidates/{candidate}/isCandidate'</span>,
+{
+  <span class="hljs-attr">method</span>: <span class="hljs-string">'GET'</span>,
+
+  <span class="hljs-attr">headers</span>: headers
+})
+.then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">res</span>) </span>{
+    <span class="hljs-keyword">return</span> res.json();
+}).then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">body</span>) </span>{
+    <span class="hljs-built_in">console</span>.log(body);
+});
+
+</code></pre>
+<pre class="highlight tab tab-go"><code><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+       <span class="hljs-string">"bytes"</span>
+       <span class="hljs-string">"net/http"</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> {
+
+    headers := <span class="hljs-keyword">map</span>[<span class="hljs-keyword">string</span>][]<span class="hljs-keyword">string</span>{
+        <span class="hljs-string">"Accept"</span>: []<span class="hljs-keyword">string</span>{<span class="hljs-string">"application/json"</span>},
+        
+    }
+
+    data := bytes.NewBuffer([]<span class="hljs-keyword">byte</span>{jsonReq})
+    req, err := http.NewRequest(<span class="hljs-string">"GET"</span>, <span class="hljs-string">"/api/candidates/{candidate}/isCandidate"</span>, data)
+    req.Header = headers
+
+    client := &amp;http.Client{}
+    resp, err := client.Do(req)
+    <span class="hljs-comment">// ...</span>
+}
+
+</code></pre>
+<pre class="highlight tab tab-ruby"><code><span class="hljs-keyword">require</span> <span class="hljs-string">'rest-client'</span>
+<span class="hljs-keyword">require</span> <span class="hljs-string">'json'</span>
+
+headers = {
+  <span class="hljs-string">'Accept'</span> =&gt; <span class="hljs-string">'application/json'</span>
+}
+
+result = RestClient.get <span class="hljs-string">'/api/candidates/{candidate}/isCandidate'</span>,
+  <span class="hljs-symbol">params:</span> {
+  }, <span class="hljs-symbol">headers:</span> headers
+
+p JSON.parse(result)
+
+</code></pre>
+<pre class="highlight tab tab-python"><code><span class="hljs-keyword">import</span> requests
+headers = {
+  <span class="hljs-string">'Accept'</span>: <span class="hljs-string">'application/json'</span>
+}
+
+r = requests.get(<span class="hljs-string">'/api/candidates/{candidate}/isCandidate'</span>, params={
+
+}, headers = headers)
+
+<span class="hljs-keyword">print</span> r.json()
+
+</code></pre>
+<p><code>GET /api/candidates/{candidate}/isCandidate</code></p>
+<h3 id="candidate-checking-parameters">Parameters</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>candidate</td>
+<td>path</td>
+<td>string</td>
+<td>true</td>
+<td>candidate's address</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Example responses</p>
+</blockquote>
+<blockquote>
+<p>200 Response</p>
+</blockquote>
+<pre class="highlight tab tab-json"><code><span class="hljs-string">"1"</span>
+</code></pre>
+<h3 id="candidate-checking-responses">Responses</h3>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
+<td>OK</td>
+<td><a href="#schemaiscandidate">isCandidate</a></td>
+</tr>
+<tr>
+<td>406</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.6">Not Acceptable</a></td>
+<td>Not Acceptable</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<aside class="success">
+This operation does not require authentication
+</aside>
+<h2 id="get-reward-of-candidate">Get reward of candidate</h2>
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+<pre class="highlight tab tab-shell"><code><span class="hljs-comment"># You can also use wget</span>
+curl -X GET /api/candidates/{candidate}/{owner}/getRewards \
+  -H <span class="hljs-string">'Accept: application/json'</span>
+
+</code></pre>
+<pre class="highlight tab tab-javascript--nodejs"><code><span class="hljs-keyword">const</span> fetch = <span class="hljs-built_in">require</span>(<span class="hljs-string">'node-fetch'</span>);
+
+<span class="hljs-keyword">const</span> headers = {
+  <span class="hljs-string">'Accept'</span>:<span class="hljs-string">'application/json'</span>
+
+};
+
+fetch(<span class="hljs-string">'/api/candidates/{candidate}/{owner}/getRewards'</span>,
+{
+  <span class="hljs-attr">method</span>: <span class="hljs-string">'GET'</span>,
+
+  <span class="hljs-attr">headers</span>: headers
+})
+.then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">res</span>) </span>{
+    <span class="hljs-keyword">return</span> res.json();
+}).then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">body</span>) </span>{
+    <span class="hljs-built_in">console</span>.log(body);
+});
+
+</code></pre>
+<pre class="highlight tab tab-go"><code><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+       <span class="hljs-string">"bytes"</span>
+       <span class="hljs-string">"net/http"</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> {
+
+    headers := <span class="hljs-keyword">map</span>[<span class="hljs-keyword">string</span>][]<span class="hljs-keyword">string</span>{
+        <span class="hljs-string">"Accept"</span>: []<span class="hljs-keyword">string</span>{<span class="hljs-string">"application/json"</span>},
+        
+    }
+
+    data := bytes.NewBuffer([]<span class="hljs-keyword">byte</span>{jsonReq})
+    req, err := http.NewRequest(<span class="hljs-string">"GET"</span>, <span class="hljs-string">"/api/candidates/{candidate}/{owner}/getRewards"</span>, data)
+    req.Header = headers
+
+    client := &amp;http.Client{}
+    resp, err := client.Do(req)
+    <span class="hljs-comment">// ...</span>
+}
+
+</code></pre>
+<pre class="highlight tab tab-ruby"><code><span class="hljs-keyword">require</span> <span class="hljs-string">'rest-client'</span>
+<span class="hljs-keyword">require</span> <span class="hljs-string">'json'</span>
+
+headers = {
+  <span class="hljs-string">'Accept'</span> =&gt; <span class="hljs-string">'application/json'</span>
+}
+
+result = RestClient.get <span class="hljs-string">'/api/candidates/{candidate}/{owner}/getRewards'</span>,
+  <span class="hljs-symbol">params:</span> {
+  }, <span class="hljs-symbol">headers:</span> headers
+
+p JSON.parse(result)
+
+</code></pre>
+<pre class="highlight tab tab-python"><code><span class="hljs-keyword">import</span> requests
+headers = {
+  <span class="hljs-string">'Accept'</span>: <span class="hljs-string">'application/json'</span>
+}
+
+r = requests.get(<span class="hljs-string">'/api/candidates/{candidate}/{owner}/getRewards'</span>, params={
+
+}, headers = headers)
+
+<span class="hljs-keyword">print</span> r.json()
+
+</code></pre>
+<p><code>GET /api/candidates/{candidate}/{owner}/getRewards</code></p>
+<h3 id="get-reward-of-candidate-parameters">Parameters</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>candidate</td>
+<td>path</td>
+<td>string</td>
+<td>true</td>
+<td>candidate's address</td>
+</tr>
+<tr>
+<td>owner</td>
+<td>path</td>
+<td>string</td>
+<td>true</td>
+<td>owner's address</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>query</td>
+<td>number</td>
+<td>false</td>
+<td>number of records</td>
+</tr>
+<tr>
+<td>page</td>
+<td>query</td>
+<td>number</td>
+<td>false</td>
+<td>page number</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Example responses</p>
+</blockquote>
+<blockquote>
+<p>200 Response</p>
+</blockquote>
+<pre class="highlight tab tab-json"><code>{
+  <span class="hljs-attr">"items"</span>: [
+    {
+      <span class="hljs-attr">"_id"</span>: <span class="hljs-string">"5c19847f0e77307940be9216"</span>,
+      <span class="hljs-attr">"epoch"</span>: <span class="hljs-number">3193</span>,
+      <span class="hljs-attr">"startBlock"</span>: <span class="hljs-number">2872801</span>,
+      <span class="hljs-attr">"endBlock"</span>: <span class="hljs-number">2873700</span>,
+      <span class="hljs-attr">"address"</span>: <span class="hljs-string">"0x11621900588eca4410c00097a9f59237f34064cd"</span>,
+      <span class="hljs-attr">"validator"</span>: <span class="hljs-string">"0x11621900588eca4410c00097a9f59237f34064cd"</span>,
+      <span class="hljs-attr">"reason"</span>: <span class="hljs-string">"Voter"</span>,
+      <span class="hljs-attr">"lockBalance"</span>: <span class="hljs-string">"1000"</span>,
+      <span class="hljs-attr">"reward"</span>: <span class="hljs-string">"8.03540381764608993247"</span>,
+      <span class="hljs-attr">"rewardTime"</span>: <span class="hljs-string">"2018-12-18T23:36:18.000Z"</span>,
+      <span class="hljs-attr">"signNumber"</span>: <span class="hljs-number">843</span>,
+      <span class="hljs-attr">"__v"</span>: <span class="hljs-number">0</span>,
+      <span class="hljs-attr">"createdAt"</span>: <span class="hljs-string">"2018-12-18T23:36:31.435Z"</span>,
+      <span class="hljs-attr">"updatedAt"</span>: <span class="hljs-string">"2018-12-18T23:36:31.435Z"</span>
+    }
+  ],
+  <span class="hljs-attr">"total"</span>: <span class="hljs-number">100</span>
+}
+</code></pre>
+<h3 id="get-reward-of-candidate-responses">Responses</h3>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
+<td>OK</td>
+<td><a href="#schemacandidaterewards">candidateRewards</a></td>
+</tr>
+<tr>
+<td>406</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.6">Not Acceptable</a></td>
+<td>Not Acceptable</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<aside class="success">
+This operation does not require authentication
+</aside>
+<h1 id="tomomaster-apis-voters">Voters</h1>
+<p>Get Voter information</p>
+<h2 id="get-voted-candidates">Get voted candidates</h2>
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+<pre class="highlight tab tab-shell"><code><span class="hljs-comment"># You can also use wget</span>
+curl -X GET /api/voters/{voter}/candidates \
+  -H <span class="hljs-string">'Accept: application/json'</span>
+
+</code></pre>
+<pre class="highlight tab tab-javascript--nodejs"><code><span class="hljs-keyword">const</span> fetch = <span class="hljs-built_in">require</span>(<span class="hljs-string">'node-fetch'</span>);
+
+<span class="hljs-keyword">const</span> headers = {
+  <span class="hljs-string">'Accept'</span>:<span class="hljs-string">'application/json'</span>
+
+};
+
+fetch(<span class="hljs-string">'/api/voters/{voter}/candidates'</span>,
+{
+  <span class="hljs-attr">method</span>: <span class="hljs-string">'GET'</span>,
+
+  <span class="hljs-attr">headers</span>: headers
+})
+.then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">res</span>) </span>{
+    <span class="hljs-keyword">return</span> res.json();
+}).then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">body</span>) </span>{
+    <span class="hljs-built_in">console</span>.log(body);
+});
+
+</code></pre>
+<pre class="highlight tab tab-go"><code><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+       <span class="hljs-string">"bytes"</span>
+       <span class="hljs-string">"net/http"</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> {
+
+    headers := <span class="hljs-keyword">map</span>[<span class="hljs-keyword">string</span>][]<span class="hljs-keyword">string</span>{
+        <span class="hljs-string">"Accept"</span>: []<span class="hljs-keyword">string</span>{<span class="hljs-string">"application/json"</span>},
+        
+    }
+
+    data := bytes.NewBuffer([]<span class="hljs-keyword">byte</span>{jsonReq})
+    req, err := http.NewRequest(<span class="hljs-string">"GET"</span>, <span class="hljs-string">"/api/voters/{voter}/candidates"</span>, data)
+    req.Header = headers
+
+    client := &amp;http.Client{}
+    resp, err := client.Do(req)
+    <span class="hljs-comment">// ...</span>
+}
+
+</code></pre>
+<pre class="highlight tab tab-ruby"><code><span class="hljs-keyword">require</span> <span class="hljs-string">'rest-client'</span>
+<span class="hljs-keyword">require</span> <span class="hljs-string">'json'</span>
+
+headers = {
+  <span class="hljs-string">'Accept'</span> =&gt; <span class="hljs-string">'application/json'</span>
+}
+
+result = RestClient.get <span class="hljs-string">'/api/voters/{voter}/candidates'</span>,
+  <span class="hljs-symbol">params:</span> {
+  }, <span class="hljs-symbol">headers:</span> headers
+
+p JSON.parse(result)
+
+</code></pre>
+<pre class="highlight tab tab-python"><code><span class="hljs-keyword">import</span> requests
+headers = {
+  <span class="hljs-string">'Accept'</span>: <span class="hljs-string">'application/json'</span>
+}
+
+r = requests.get(<span class="hljs-string">'/api/voters/{voter}/candidates'</span>, params={
+
+}, headers = headers)
+
+<span class="hljs-keyword">print</span> r.json()
+
+</code></pre>
+<p><code>GET /api/voters/{voter}/candidates</code></p>
+<h3 id="get-voted-candidates-parameters">Parameters</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>voter</td>
+<td>path</td>
+<td>string</td>
+<td>true</td>
+<td>voter's address</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>query</td>
+<td>number</td>
+<td>false</td>
+<td>Number of record in a query</td>
+</tr>
+<tr>
+<td>page</td>
+<td>query</td>
+<td>number</td>
+<td>false</td>
+<td>Page number</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Example responses</p>
+</blockquote>
+<blockquote>
+<p>200 Response</p>
+</blockquote>
+<pre class="highlight tab tab-json"><code>{
+  <span class="hljs-attr">"items"</span>: [
+    {
+      <span class="hljs-attr">"candidate"</span>: <span class="hljs-string">"0xfc5571921c6d3672e13b58ea23dea534f2b35fa0"</span>,
+      <span class="hljs-attr">"capacity"</span>: <span class="hljs-string">"10000000000000000000"</span>,
+      <span class="hljs-attr">"capacityNumber"</span>: <span class="hljs-number">10</span>,
+      <span class="hljs-attr">"candidateName"</span>: <span class="hljs-string">"Earth"</span>
+    }
+  ],
+  <span class="hljs-attr">"total"</span>: <span class="hljs-number">100</span>
+}
+</code></pre>
+<h3 id="get-voted-candidates-responses">Responses</h3>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
+<td>OK</td>
+<td><a href="#schemavotercandidates">voterCandidates</a></td>
+</tr>
+<tr>
+<td>406</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.6">Not Acceptable</a></td>
+<td>Not Acceptable</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<aside class="success">
+This operation does not require authentication
+</aside>
+<h2 id="get-reward-of-voter">Get reward of voter</h2>
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+<pre class="highlight tab tab-shell"><code><span class="hljs-comment"># You can also use wget</span>
+curl -X GET /api/voters/{voter}/rewards \
+  -H <span class="hljs-string">'Accept: application/json'</span>
+
+</code></pre>
+<pre class="highlight tab tab-javascript--nodejs"><code><span class="hljs-keyword">const</span> fetch = <span class="hljs-built_in">require</span>(<span class="hljs-string">'node-fetch'</span>);
+
+<span class="hljs-keyword">const</span> headers = {
+  <span class="hljs-string">'Accept'</span>:<span class="hljs-string">'application/json'</span>
+
+};
+
+fetch(<span class="hljs-string">'/api/voters/{voter}/rewards'</span>,
+{
+  <span class="hljs-attr">method</span>: <span class="hljs-string">'GET'</span>,
+
+  <span class="hljs-attr">headers</span>: headers
+})
+.then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">res</span>) </span>{
+    <span class="hljs-keyword">return</span> res.json();
+}).then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">body</span>) </span>{
+    <span class="hljs-built_in">console</span>.log(body);
+});
+
+</code></pre>
+<pre class="highlight tab tab-go"><code><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+       <span class="hljs-string">"bytes"</span>
+       <span class="hljs-string">"net/http"</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> {
+
+    headers := <span class="hljs-keyword">map</span>[<span class="hljs-keyword">string</span>][]<span class="hljs-keyword">string</span>{
+        <span class="hljs-string">"Accept"</span>: []<span class="hljs-keyword">string</span>{<span class="hljs-string">"application/json"</span>},
+        
+    }
+
+    data := bytes.NewBuffer([]<span class="hljs-keyword">byte</span>{jsonReq})
+    req, err := http.NewRequest(<span class="hljs-string">"GET"</span>, <span class="hljs-string">"/api/voters/{voter}/rewards"</span>, data)
+    req.Header = headers
+
+    client := &amp;http.Client{}
+    resp, err := client.Do(req)
+    <span class="hljs-comment">// ...</span>
+}
+
+</code></pre>
+<pre class="highlight tab tab-ruby"><code><span class="hljs-keyword">require</span> <span class="hljs-string">'rest-client'</span>
+<span class="hljs-keyword">require</span> <span class="hljs-string">'json'</span>
+
+headers = {
+  <span class="hljs-string">'Accept'</span> =&gt; <span class="hljs-string">'application/json'</span>
+}
+
+result = RestClient.get <span class="hljs-string">'/api/voters/{voter}/rewards'</span>,
+  <span class="hljs-symbol">params:</span> {
+  }, <span class="hljs-symbol">headers:</span> headers
+
+p JSON.parse(result)
+
+</code></pre>
+<pre class="highlight tab tab-python"><code><span class="hljs-keyword">import</span> requests
+headers = {
+  <span class="hljs-string">'Accept'</span>: <span class="hljs-string">'application/json'</span>
+}
+
+r = requests.get(<span class="hljs-string">'/api/voters/{voter}/rewards'</span>, params={
+
+}, headers = headers)
+
+<span class="hljs-keyword">print</span> r.json()
+
+</code></pre>
+<p><code>GET /api/voters/{voter}/rewards</code></p>
+<h3 id="get-reward-of-voter-parameters">Parameters</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>voter</td>
+<td>path</td>
+<td>string</td>
+<td>true</td>
+<td>candidate's address</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>query</td>
+<td>number</td>
+<td>false</td>
+<td>number of records</td>
+</tr>
+<tr>
+<td>page</td>
+<td>query</td>
+<td>number</td>
+<td>false</td>
+<td>page number</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Example responses</p>
+</blockquote>
+<blockquote>
+<p>200 Response</p>
+</blockquote>
+<pre class="highlight tab tab-json"><code>{
+  <span class="hljs-attr">"items"</span>: [
+    {
+      <span class="hljs-attr">"_id"</span>: <span class="hljs-string">"5c19847f0e77307940be922a"</span>,
+      <span class="hljs-attr">"epoch"</span>: <span class="hljs-number">3193</span>,
+      <span class="hljs-attr">"startBlock"</span>: <span class="hljs-number">2872801</span>,
+      <span class="hljs-attr">"endBlock"</span>: <span class="hljs-number">2873700</span>,
+      <span class="hljs-attr">"address"</span>: <span class="hljs-string">"0x11621900588eca4410c00097a9f59237f34064cd"</span>,
+      <span class="hljs-attr">"validator"</span>: <span class="hljs-string">"0x11621900588eca4410c00097a9f59237f34064cd"</span>,
+      <span class="hljs-attr">"reason"</span>: <span class="hljs-string">"MasterNode"</span>,
+      <span class="hljs-attr">"lockBalance"</span>: <span class="hljs-string">"1000"</span>,
+      <span class="hljs-attr">"reward"</span>: <span class="hljs-string">"25.97042513863216266174"</span>,
+      <span class="hljs-attr">"rewardTime"</span>: <span class="hljs-string">"2018-12-18T23:36:18.000Z"</span>,
+      <span class="hljs-attr">"signNumber"</span>: <span class="hljs-number">843</span>,
+      <span class="hljs-attr">"__v"</span>: <span class="hljs-number">0</span>,
+      <span class="hljs-attr">"createdAt"</span>: <span class="hljs-string">"2018-12-18T23:36:31.580Z"</span>,
+      <span class="hljs-attr">"updatedAt"</span>: <span class="hljs-string">"2018-12-18T23:36:31.580Z"</span>,
+      <span class="hljs-attr">"candidateName"</span>: <span class="hljs-string">"0x11621900588eca4410c00097a9f59237f34064cd"</span>
+    }
+  ],
+  <span class="hljs-attr">"total"</span>: <span class="hljs-number">100</span>
+}
+</code></pre>
+<h3 id="get-reward-of-voter-responses">Responses</h3>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
+<td>OK</td>
+<td><a href="#schemavoterrewards">voterRewards</a></td>
+</tr>
+<tr>
+<td>406</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.6">Not Acceptable</a></td>
+<td>Not Acceptable</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<aside class="success">
+This operation does not require authentication
+</aside>
+<h1 id="tomomaster-apis-transaction">Transaction</h1>
+<p>Get transactions of candidate and voter</p>
+<h2 id="get-transactions-of-a-candidate">Get transactions of a candidate</h2>
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+<pre class="highlight tab tab-shell"><code><span class="hljs-comment"># You can also use wget</span>
+curl -X GET /api/transactions/candidate/{candidate} \
+  -H <span class="hljs-string">'Accept: application/json'</span>
+
+</code></pre>
+<pre class="highlight tab tab-javascript--nodejs"><code><span class="hljs-keyword">const</span> fetch = <span class="hljs-built_in">require</span>(<span class="hljs-string">'node-fetch'</span>);
+
+<span class="hljs-keyword">const</span> headers = {
+  <span class="hljs-string">'Accept'</span>:<span class="hljs-string">'application/json'</span>
+
+};
+
+fetch(<span class="hljs-string">'/api/transactions/candidate/{candidate}'</span>,
+{
+  <span class="hljs-attr">method</span>: <span class="hljs-string">'GET'</span>,
+
+  <span class="hljs-attr">headers</span>: headers
+})
+.then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">res</span>) </span>{
+    <span class="hljs-keyword">return</span> res.json();
+}).then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">body</span>) </span>{
+    <span class="hljs-built_in">console</span>.log(body);
+});
+
+</code></pre>
+<pre class="highlight tab tab-go"><code><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+       <span class="hljs-string">"bytes"</span>
+       <span class="hljs-string">"net/http"</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> {
+
+    headers := <span class="hljs-keyword">map</span>[<span class="hljs-keyword">string</span>][]<span class="hljs-keyword">string</span>{
+        <span class="hljs-string">"Accept"</span>: []<span class="hljs-keyword">string</span>{<span class="hljs-string">"application/json"</span>},
+        
+    }
+
+    data := bytes.NewBuffer([]<span class="hljs-keyword">byte</span>{jsonReq})
+    req, err := http.NewRequest(<span class="hljs-string">"GET"</span>, <span class="hljs-string">"/api/transactions/candidate/{candidate}"</span>, data)
+    req.Header = headers
+
+    client := &amp;http.Client{}
+    resp, err := client.Do(req)
+    <span class="hljs-comment">// ...</span>
+}
+
+</code></pre>
+<pre class="highlight tab tab-ruby"><code><span class="hljs-keyword">require</span> <span class="hljs-string">'rest-client'</span>
+<span class="hljs-keyword">require</span> <span class="hljs-string">'json'</span>
+
+headers = {
+  <span class="hljs-string">'Accept'</span> =&gt; <span class="hljs-string">'application/json'</span>
+}
+
+result = RestClient.get <span class="hljs-string">'/api/transactions/candidate/{candidate}'</span>,
+  <span class="hljs-symbol">params:</span> {
+  }, <span class="hljs-symbol">headers:</span> headers
+
+p JSON.parse(result)
+
+</code></pre>
+<pre class="highlight tab tab-python"><code><span class="hljs-keyword">import</span> requests
+headers = {
+  <span class="hljs-string">'Accept'</span>: <span class="hljs-string">'application/json'</span>
+}
+
+r = requests.get(<span class="hljs-string">'/api/transactions/candidate/{candidate}'</span>, params={
+
+}, headers = headers)
+
+<span class="hljs-keyword">print</span> r.json()
+
+</code></pre>
+<p><code>GET /api/transactions/candidate/{candidate}</code></p>
+<h3 id="get-transactions-of-a-candidate-parameters">Parameters</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>candidate</td>
+<td>path</td>
+<td>string</td>
+<td>true</td>
+<td>candidate's address</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>query</td>
+<td>number</td>
+<td>false</td>
+<td>number of records</td>
+</tr>
+<tr>
+<td>page</td>
+<td>query</td>
+<td>number</td>
+<td>false</td>
+<td>page number</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Example responses</p>
+</blockquote>
+<blockquote>
+<p>200 Response</p>
+</blockquote>
+<pre class="highlight tab tab-json"><code>{
+  <span class="hljs-attr">"items"</span>: [
+    {
+      <span class="hljs-attr">"_id"</span>: <span class="hljs-string">"5c247c545e769d2f2c10ab38"</span>,
+      <span class="hljs-attr">"smartContractAddress"</span>: <span class="hljs-string">"0x0000000000000000000000000000000000000088"</span>,
+      <span class="hljs-attr">"tx"</span>: <span class="hljs-string">"0x0f96e419c89dcf1397a6206959334a4485c5a158a0320cb8a8e98db3b7888141"</span>,
+      <span class="hljs-attr">"event"</span>: <span class="hljs-string">"Vote"</span>,
+      <span class="hljs-attr">"voter"</span>: <span class="hljs-string">"0xe91dc9746eed1b5971aabd6e1681da1a4d06be8d"</span>,
+      <span class="hljs-attr">"owner"</span>: <span class="hljs-string">""</span>,
+      <span class="hljs-attr">"candidate"</span>: <span class="hljs-string">"0x11621900588eca4410c00097a9f59237f34064cd"</span>,
+      <span class="hljs-attr">"capacity"</span>: <span class="hljs-string">"11000000000000000000"</span>,
+      <span class="hljs-attr">"blockNumber"</span>: <span class="hljs-number">2897395</span>,
+      <span class="hljs-attr">"createdAt"</span>: <span class="hljs-string">"2018-12-27T07:16:36.000Z"</span>,
+      <span class="hljs-attr">"__v"</span>: <span class="hljs-number">0</span>
+    }
+  ],
+  <span class="hljs-attr">"total"</span>: <span class="hljs-number">100</span>
+}
+</code></pre>
+<h3 id="get-transactions-of-a-candidate-responses">Responses</h3>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
+<td>OK</td>
+<td><a href="#schematxcandidate">txCandidate</a></td>
+</tr>
+</tbody>
+</table>
+<aside class="success">
+This operation does not require authentication
+</aside>
+<h2 id="get-transactions-of-a-voter">Get transactions of a voter</h2>
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+<pre class="highlight tab tab-shell"><code><span class="hljs-comment"># You can also use wget</span>
+curl -X GET /api/transactions/voter/{voter} \
+  -H <span class="hljs-string">'Accept: application/json'</span>
+
+</code></pre>
+<pre class="highlight tab tab-javascript--nodejs"><code><span class="hljs-keyword">const</span> fetch = <span class="hljs-built_in">require</span>(<span class="hljs-string">'node-fetch'</span>);
+
+<span class="hljs-keyword">const</span> headers = {
+  <span class="hljs-string">'Accept'</span>:<span class="hljs-string">'application/json'</span>
+
+};
+
+fetch(<span class="hljs-string">'/api/transactions/voter/{voter}'</span>,
+{
+  <span class="hljs-attr">method</span>: <span class="hljs-string">'GET'</span>,
+
+  <span class="hljs-attr">headers</span>: headers
+})
+.then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">res</span>) </span>{
+    <span class="hljs-keyword">return</span> res.json();
+}).then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">body</span>) </span>{
+    <span class="hljs-built_in">console</span>.log(body);
+});
+
+</code></pre>
+<pre class="highlight tab tab-go"><code><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+       <span class="hljs-string">"bytes"</span>
+       <span class="hljs-string">"net/http"</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> {
+
+    headers := <span class="hljs-keyword">map</span>[<span class="hljs-keyword">string</span>][]<span class="hljs-keyword">string</span>{
+        <span class="hljs-string">"Accept"</span>: []<span class="hljs-keyword">string</span>{<span class="hljs-string">"application/json"</span>},
+        
+    }
+
+    data := bytes.NewBuffer([]<span class="hljs-keyword">byte</span>{jsonReq})
+    req, err := http.NewRequest(<span class="hljs-string">"GET"</span>, <span class="hljs-string">"/api/transactions/voter/{voter}"</span>, data)
+    req.Header = headers
+
+    client := &amp;http.Client{}
+    resp, err := client.Do(req)
+    <span class="hljs-comment">// ...</span>
+}
+
+</code></pre>
+<pre class="highlight tab tab-ruby"><code><span class="hljs-keyword">require</span> <span class="hljs-string">'rest-client'</span>
+<span class="hljs-keyword">require</span> <span class="hljs-string">'json'</span>
+
+headers = {
+  <span class="hljs-string">'Accept'</span> =&gt; <span class="hljs-string">'application/json'</span>
+}
+
+result = RestClient.get <span class="hljs-string">'/api/transactions/voter/{voter}'</span>,
+  <span class="hljs-symbol">params:</span> {
+  }, <span class="hljs-symbol">headers:</span> headers
+
+p JSON.parse(result)
+
+</code></pre>
+<pre class="highlight tab tab-python"><code><span class="hljs-keyword">import</span> requests
+headers = {
+  <span class="hljs-string">'Accept'</span>: <span class="hljs-string">'application/json'</span>
+}
+
+r = requests.get(<span class="hljs-string">'/api/transactions/voter/{voter}'</span>, params={
+
+}, headers = headers)
+
+<span class="hljs-keyword">print</span> r.json()
+
+</code></pre>
+<p><code>GET /api/transactions/voter/{voter}</code></p>
+<h3 id="get-transactions-of-a-voter-parameters">Parameters</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>voter</td>
+<td>path</td>
+<td>string</td>
+<td>true</td>
+<td>voter's address</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>query</td>
+<td>number</td>
+<td>false</td>
+<td>number of records</td>
+</tr>
+<tr>
+<td>page</td>
+<td>query</td>
+<td>number</td>
+<td>false</td>
+<td>page number</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Example responses</p>
+</blockquote>
+<blockquote>
+<p>200 Response</p>
+</blockquote>
+<pre class="highlight tab tab-json"><code>{
+  <span class="hljs-attr">"items"</span>: [
+    {
+      <span class="hljs-attr">"_id"</span>: <span class="hljs-string">"5c24a189ff305840a2498bf0"</span>,
+      <span class="hljs-attr">"smartContractAddress"</span>: <span class="hljs-string">"0x0000000000000000000000000000000000000088"</span>,
+      <span class="hljs-attr">"tx"</span>: <span class="hljs-string">"0xf8f2d402c6b1cb5f891b687d69ddcd920e58d9e9fe002857cac0e7ce47998884"</span>,
+      <span class="hljs-attr">"event"</span>: <span class="hljs-string">"Unvote"</span>,
+      <span class="hljs-attr">"voter"</span>: <span class="hljs-string">"0x487d62d33467c4842c5e54eb370837e4e88bba0f"</span>,
+      <span class="hljs-attr">"owner"</span>: <span class="hljs-string">""</span>,
+      <span class="hljs-attr">"candidate"</span>: <span class="hljs-string">"0xfc5571921c6d3672e13b58ea23dea534f2b35fa0"</span>,
+      <span class="hljs-attr">"capacity"</span>: <span class="hljs-string">"10000999000000000000000"</span>,
+      <span class="hljs-attr">"blockNumber"</span>: <span class="hljs-number">763397</span>,
+      <span class="hljs-attr">"createdAt"</span>: <span class="hljs-string">"2018-12-27T09:55:21.000Z"</span>,
+      <span class="hljs-attr">"__v"</span>: <span class="hljs-number">0</span>
+    }
+  ],
+  <span class="hljs-attr">"total"</span>: <span class="hljs-number">100</span>
+}
+</code></pre>
+<h3 id="get-transactions-of-a-voter-responses">Responses</h3>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
+<td>OK</td>
+<td><a href="#schematxvoter">txVoter</a></td>
+</tr>
+</tbody>
+</table>
+<aside class="success">
+This operation does not require authentication
+</aside>
+<h1 id="schemas">Schemas</h1>
+<h2 id="tocsconfig">config</h2>
+<p><a id="schemaconfig"></a></p>
+<pre class="highlight tab tab-json"><code>{
+  <span class="hljs-attr">"blockchain"</span>: {
+    <span class="hljs-attr">"rpc"</span>: <span class="hljs-string">"string"</span>,
+    <span class="hljs-attr">"ws"</span>: <span class="hljs-string">"string"</span>,
+    <span class="hljs-attr">"epoch"</span>: <span class="hljs-number">900</span>,
+    <span class="hljs-attr">"blockTime"</span>: <span class="hljs-number">0</span>
+  },
+  <span class="hljs-attr">"explorerUrl"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"GA"</span>: <span class="hljs-string">"string"</span>
+}
+
+</code></pre>
+<h3 id="properties">Properties</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Restrictions</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>blockchain</td>
+<td>object</td>
+<td>false</td>
+<td>none</td>
+<td>Tomochain's configurations</td>
+</tr>
+<tr>
+<td>» rpc</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>rpc</td>
+</tr>
+<tr>
+<td>» ws</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>websocket</td>
+</tr>
+<tr>
+<td>» epoch</td>
+<td>number</td>
+<td>false</td>
+<td>none</td>
+<td>Number of blocks for 1 epoch</td>
+</tr>
+<tr>
+<td>» blockTime</td>
+<td>number</td>
+<td>false</td>
+<td>none</td>
+<td>Block time</td>
+</tr>
+<tr>
+<td>explorerUrl</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>Tomoscan's API</td>
+</tr>
+<tr>
+<td>GA</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>Google Analytic code</td>
+</tr>
+</tbody>
+</table>
+<h2 id="tocscandidate">candidate</h2>
+<p><a id="schemacandidate"></a></p>
+<pre class="highlight tab tab-json"><code>{
+  <span class="hljs-attr">"items"</span>: [
+    {
+      <span class="hljs-attr">"_id"</span>: <span class="hljs-string">"123"</span>,
+      <span class="hljs-attr">"candidate"</span>: <span class="hljs-string">"0x11621900588eca4410c00097a9f59237f34064cd"</span>,
+      <span class="hljs-attr">"smartContractAddress"</span>: <span class="hljs-string">"0x0000000000000000000000000000000000000088"</span>,
+      <span class="hljs-attr">"__v"</span>: <span class="hljs-number">0</span>,
+      <span class="hljs-attr">"capacity"</span>: <span class="hljs-string">"91540333800000001000000"</span>,
+      <span class="hljs-attr">"createdAt"</span>: <span class="hljs-string">"2018-10-31T03:42:39.375Z"</span>,
+      <span class="hljs-attr">"owner"</span>: <span class="hljs-string">"0x11621900588eca4410c00097a9f59237f34064cd"</span>,
+      <span class="hljs-attr">"status"</span>: <span class="hljs-string">"RESIGNED"</span>,
+      <span class="hljs-attr">"updatedAt"</span>: <span class="hljs-string">"2019-01-11T09:21:55.028Z"</span>,
+      <span class="hljs-attr">"latestSignedBlock"</span>: <span class="hljs-number">2917487</span>,
+      <span class="hljs-attr">"capacityNumber"</span>: <span class="hljs-number">91540.33380000001</span>,
+      <span class="hljs-attr">"isMasternode"</span>: <span class="hljs-literal">false</span>,
+      <span class="hljs-attr">"isPenalty"</span>: <span class="hljs-literal">false</span>
+    }
+  ],
+  <span class="hljs-attr">"total"</span>: <span class="hljs-number">100</span>,
+  <span class="hljs-attr">"activeCandidates"</span>: <span class="hljs-number">10</span>
+}
+
+</code></pre>
+<h3 id="properties">Properties</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Restrictions</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>items</td>
+<td>[object]</td>
+<td>false</td>
+<td>none</td>
+<td>Candidate's data</td>
+</tr>
+<tr>
+<td>total</td>
+<td>number</td>
+<td>false</td>
+<td>none</td>
+<td>Total number of candidate</td>
+</tr>
+<tr>
+<td>activeCandidates</td>
+<td>number</td>
+<td>false</td>
+<td>none</td>
+<td>Number of active candidate</td>
+</tr>
+</tbody>
+</table>
+<h2 id="tocscandidatedetail">candidateDetail</h2>
+<p><a id="schemacandidatedetail"></a></p>
+<pre class="highlight tab tab-json"><code>{
+  <span class="hljs-attr">"_id"</span>: <span class="hljs-string">"123"</span>,
+  <span class="hljs-attr">"candidate"</span>: <span class="hljs-string">"0x11621900588eca4410c00097a9f59237f34064cd"</span>,
+  <span class="hljs-attr">"smartContractAddress"</span>: <span class="hljs-string">"0x0000000000000000000000000000000000000088"</span>,
+  <span class="hljs-attr">"__v"</span>: <span class="hljs-number">0</span>,
+  <span class="hljs-attr">"capacity"</span>: <span class="hljs-string">"91540333800000001000000"</span>,
+  <span class="hljs-attr">"createdAt"</span>: <span class="hljs-string">"2018-10-31T03:42:39.375Z"</span>,
+  <span class="hljs-attr">"owner"</span>: <span class="hljs-string">"0x11621900588eca4410c00097a9f59237f34064cd"</span>,
+  <span class="hljs-attr">"status"</span>: <span class="hljs-string">"RESIGNED"</span>,
+  <span class="hljs-attr">"updatedAt"</span>: <span class="hljs-string">"2019-01-11T09:17:59.535Z"</span>,
+  <span class="hljs-attr">"latestSignedBlock"</span>: <span class="hljs-string">"2917487"</span>,
+  <span class="hljs-attr">"capacityNumber"</span>: <span class="hljs-number">91540.33380000001</span>,
+  <span class="hljs-attr">"isMasternode"</span>: <span class="hljs-literal">false</span>,
+  <span class="hljs-attr">"isPenalty"</span>: <span class="hljs-literal">false</span>
+}
+
+</code></pre>
+<h3 id="properties">Properties</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Restrictions</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>_id</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>id</td>
+</tr>
+<tr>
+<td>candidate</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>candidate's address</td>
+</tr>
+<tr>
+<td>smartContractAddress</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>smart contract's address</td>
+</tr>
+<tr>
+<td>__v</td>
+<td>number</td>
+<td>false</td>
+<td>none</td>
+<td>__v</td>
+</tr>
+<tr>
+<td>capacity</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>capacity in wei</td>
+</tr>
+<tr>
+<td>createdAt</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>creation date of candidate</td>
+</tr>
+<tr>
+<td>owner</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>owner's address</td>
+</tr>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>candidate's status</td>
+</tr>
+<tr>
+<td>updatedAt</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>update time</td>
+</tr>
+<tr>
+<td>latestSignedBlock</td>
+<td>string</td>
+<td>false</td>
+<td>none</td>
+<td>latest signed block</td>
+</tr>
+<tr>
+<td>capacityNumber</td>
+<td>number</td>
+<td>false</td>
+<td>none</td>
+<td>capacity number</td>
+</tr>
+<tr>
+<td>isMasternode</td>
+<td>boolean</td>
+<td>false</td>
+<td>none</td>
+<td>is masternode</td>
+</tr>
+<tr>
+<td>isPenalty</td>
+<td>boolean</td>
+<td>false</td>
+<td>none</td>
+<td>is penalty</td>
+</tr>
+</tbody>
+</table>
+<h2 id="tocscandidaterewards">candidateRewards</h2>
+<p><a id="schemacandidaterewards"></a></p>
+<pre class="highlight tab tab-json"><code>{
+  <span class="hljs-attr">"items"</span>: [
+    {
+      <span class="hljs-attr">"_id"</span>: <span class="hljs-string">"5c19847f0e77307940be9216"</span>,
+      <span class="hljs-attr">"epoch"</span>: <span class="hljs-number">3193</span>,
+      <span class="hljs-attr">"startBlock"</span>: <span class="hljs-number">2872801</span>,
+      <span class="hljs-attr">"endBlock"</span>: <span class="hljs-number">2873700</span>,
+      <span class="hljs-attr">"address"</span>: <span class="hljs-string">"0x11621900588eca4410c00097a9f59237f34064cd"</span>,
+      <span class="hljs-attr">"validator"</span>: <span class="hljs-string">"0x11621900588eca4410c00097a9f59237f34064cd"</span>,
+      <span class="hljs-attr">"reason"</span>: <span class="hljs-string">"Voter"</span>,
+      <span class="hljs-attr">"lockBalance"</span>: <span class="hljs-string">"1000"</span>,
+      <span class="hljs-attr">"reward"</span>: <span class="hljs-string">"8.03540381764608993247"</span>,
+      <span class="hljs-attr">"rewardTime"</span>: <span class="hljs-string">"2018-12-18T23:36:18.000Z"</span>,
+      <span class="hljs-attr">"signNumber"</span>: <span class="hljs-number">843</span>,
+      <span class="hljs-attr">"__v"</span>: <span class="hljs-number">0</span>,
+      <span class="hljs-attr">"createdAt"</span>: <span class="hljs-string">"2018-12-18T23:36:31.435Z"</span>,
+      <span class="hljs-attr">"updatedAt"</span>: <span class="hljs-string">"2018-12-18T23:36:31.435Z"</span>
+    }
+  ],
+  <span class="hljs-attr">"total"</span>: <span class="hljs-number">100</span>
+}
+
+</code></pre>
+<h3 id="properties">Properties</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Restrictions</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>items</td>
+<td>[object]</td>
+<td>false</td>
+<td>none</td>
+<td>Candidate's data</td>
+</tr>
+<tr>
+<td>total</td>
+<td>number</td>
+<td>false</td>
+<td>none</td>
+<td>Number of candidate</td>
+</tr>
+</tbody>
+</table>
+<h2 id="tocscandidatevoter">candidateVoter</h2>
+<p><a id="schemacandidatevoter"></a></p>
+<pre class="highlight tab tab-json"><code>{
+  <span class="hljs-attr">"items"</span>: [
+    {
+      <span class="hljs-attr">"_id"</span>: <span class="hljs-string">"5bd924a9aa41b819395d9207"</span>,
+      <span class="hljs-attr">"candidate"</span>: <span class="hljs-string">"0x11621900588eca4410c00097a9f59237f34064cd"</span>,
+      <span class="hljs-attr">"smartContractAddress"</span>: <span class="hljs-string">"0x0000000000000000000000000000000000000088"</span>,
+      <span class="hljs-attr">"voter"</span>: <span class="hljs-string">"0xf2cce442c7ab5baf194838081b5f9396330ecfb8"</span>,
+      <span class="hljs-attr">"__v"</span>: <span class="hljs-number">0</span>,
+      <span class="hljs-attr">"capacity"</span>: <span class="hljs-string">"105000000000000000000"</span>,
+      <span class="hljs-attr">"createdAt"</span>: <span class="hljs-string">"2018-10-31T03:42:33.922Z"</span>,
+      <span class="hljs-attr">"updatedAt"</span>: <span class="hljs-string">"2019-01-05T02:11:31.489Z"</span>,
+      <span class="hljs-attr">"capacityNumber"</span>: <span class="hljs-number">105</span>
+    }
+  ],
+  <span class="hljs-attr">"total"</span>: <span class="hljs-number">100</span>
+}
+
+</code></pre>
+<h3 id="properties">Properties</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Restrictions</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>items</td>
+<td>[object]</td>
+<td>false</td>
+<td>none</td>
+<td>Candidate's data</td>
+</tr>
+<tr>
+<td>total</td>
+<td>number</td>
+<td>false</td>
+<td>none</td>
+<td>Total number of voters</td>
+</tr>
+</tbody>
+</table>
+<h2 id="tocsvotercandidates">voterCandidates</h2>
+<p><a id="schemavotercandidates"></a></p>
+<pre class="highlight tab tab-json"><code>{
+  <span class="hljs-attr">"items"</span>: [
+    {
+      <span class="hljs-attr">"candidate"</span>: <span class="hljs-string">"0xfc5571921c6d3672e13b58ea23dea534f2b35fa0"</span>,
+      <span class="hljs-attr">"capacity"</span>: <span class="hljs-string">"10000000000000000000"</span>,
+      <span class="hljs-attr">"capacityNumber"</span>: <span class="hljs-number">10</span>,
+      <span class="hljs-attr">"candidateName"</span>: <span class="hljs-string">"Earth"</span>
+    }
+  ],
+  <span class="hljs-attr">"total"</span>: <span class="hljs-number">100</span>
+}
+
+</code></pre>
+<h3 id="properties">Properties</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Restrictions</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>items</td>
+<td>[object]</td>
+<td>false</td>
+<td>none</td>
+<td>Candidate's data</td>
+</tr>
+<tr>
+<td>total</td>
+<td>number</td>
+<td>false</td>
+<td>none</td>
+<td>Total number of rewards</td>
+</tr>
+</tbody>
+</table>
+<h2 id="tocsvoterrewards">voterRewards</h2>
+<p><a id="schemavoterrewards"></a></p>
+<pre class="highlight tab tab-json"><code>{
+  <span class="hljs-attr">"items"</span>: [
+    {
+      <span class="hljs-attr">"_id"</span>: <span class="hljs-string">"5c19847f0e77307940be922a"</span>,
+      <span class="hljs-attr">"epoch"</span>: <span class="hljs-number">3193</span>,
+      <span class="hljs-attr">"startBlock"</span>: <span class="hljs-number">2872801</span>,
+      <span class="hljs-attr">"endBlock"</span>: <span class="hljs-number">2873700</span>,
+      <span class="hljs-attr">"address"</span>: <span class="hljs-string">"0x11621900588eca4410c00097a9f59237f34064cd"</span>,
+      <span class="hljs-attr">"validator"</span>: <span class="hljs-string">"0x11621900588eca4410c00097a9f59237f34064cd"</span>,
+      <span class="hljs-attr">"reason"</span>: <span class="hljs-string">"MasterNode"</span>,
+      <span class="hljs-attr">"lockBalance"</span>: <span class="hljs-string">"1000"</span>,
+      <span class="hljs-attr">"reward"</span>: <span class="hljs-string">"25.97042513863216266174"</span>,
+      <span class="hljs-attr">"rewardTime"</span>: <span class="hljs-string">"2018-12-18T23:36:18.000Z"</span>,
+      <span class="hljs-attr">"signNumber"</span>: <span class="hljs-number">843</span>,
+      <span class="hljs-attr">"__v"</span>: <span class="hljs-number">0</span>,
+      <span class="hljs-attr">"createdAt"</span>: <span class="hljs-string">"2018-12-18T23:36:31.580Z"</span>,
+      <span class="hljs-attr">"updatedAt"</span>: <span class="hljs-string">"2018-12-18T23:36:31.580Z"</span>,
+      <span class="hljs-attr">"candidateName"</span>: <span class="hljs-string">"0x11621900588eca4410c00097a9f59237f34064cd"</span>
+    }
+  ],
+  <span class="hljs-attr">"total"</span>: <span class="hljs-number">100</span>
+}
+
+</code></pre>
+<h3 id="properties">Properties</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Restrictions</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>items</td>
+<td>[object]</td>
+<td>false</td>
+<td>none</td>
+<td>Voter's reward array</td>
+</tr>
+<tr>
+<td>total</td>
+<td>number</td>
+<td>false</td>
+<td>none</td>
+<td>Number of candidate</td>
+</tr>
+</tbody>
+</table>
+<h2 id="tocsismasternode">isMasternode</h2>
+<p><a id="schemaismasternode"></a></p>
+<pre class="highlight tab tab-json"><code><span class="hljs-string">"1"</span>
+
+</code></pre>
+<h3 id="properties">Properties</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Restrictions</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>anonymous</em></td>
+<td>number</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+<h4 id="enumerated-values">Enumerated Values</h4>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>anonymous</em></td>
+<td>1</td>
+</tr>
+<tr>
+<td><em>anonymous</em></td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<h2 id="tocsiscandidate">isCandidate</h2>
+<p><a id="schemaiscandidate"></a></p>
+<pre class="highlight tab tab-json"><code><span class="hljs-string">"1"</span>
+
+</code></pre>
+<h3 id="properties">Properties</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Restrictions</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>anonymous</em></td>
+<td>number</td>
+<td>false</td>
+<td>none</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+<h4 id="enumerated-values">Enumerated Values</h4>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>anonymous</em></td>
+<td>1</td>
+</tr>
+<tr>
+<td><em>anonymous</em></td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<h2 id="tocstxcandidate">txCandidate</h2>
+<p><a id="schematxcandidate"></a></p>
+<pre class="highlight tab tab-json"><code>{
+  <span class="hljs-attr">"items"</span>: [
+    {
+      <span class="hljs-attr">"_id"</span>: <span class="hljs-string">"5c247c545e769d2f2c10ab38"</span>,
+      <span class="hljs-attr">"smartContractAddress"</span>: <span class="hljs-string">"0x0000000000000000000000000000000000000088"</span>,
+      <span class="hljs-attr">"tx"</span>: <span class="hljs-string">"0x0f96e419c89dcf1397a6206959334a4485c5a158a0320cb8a8e98db3b7888141"</span>,
+      <span class="hljs-attr">"event"</span>: <span class="hljs-string">"Vote"</span>,
+      <span class="hljs-attr">"voter"</span>: <span class="hljs-string">"0xe91dc9746eed1b5971aabd6e1681da1a4d06be8d"</span>,
+      <span class="hljs-attr">"owner"</span>: <span class="hljs-string">""</span>,
+      <span class="hljs-attr">"candidate"</span>: <span class="hljs-string">"0x11621900588eca4410c00097a9f59237f34064cd"</span>,
+      <span class="hljs-attr">"capacity"</span>: <span class="hljs-string">"11000000000000000000"</span>,
+      <span class="hljs-attr">"blockNumber"</span>: <span class="hljs-number">2897395</span>,
+      <span class="hljs-attr">"createdAt"</span>: <span class="hljs-string">"2018-12-27T07:16:36.000Z"</span>,
+      <span class="hljs-attr">"__v"</span>: <span class="hljs-number">0</span>
+    }
+  ],
+  <span class="hljs-attr">"total"</span>: <span class="hljs-number">100</span>
+}
+
+</code></pre>
+<h3 id="properties">Properties</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Restrictions</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>items</td>
+<td>[object]</td>
+<td>false</td>
+<td>none</td>
+<td>Candidate's transactions array</td>
+</tr>
+<tr>
+<td>total</td>
+<td>number</td>
+<td>false</td>
+<td>none</td>
+<td>Number of candidate</td>
+</tr>
+</tbody>
+</table>
+<h2 id="tocstxvoter">txVoter</h2>
+<p><a id="schematxvoter"></a></p>
+<pre class="highlight tab tab-json"><code>{
+  <span class="hljs-attr">"items"</span>: [
+    {
+      <span class="hljs-attr">"_id"</span>: <span class="hljs-string">"5c24a189ff305840a2498bf0"</span>,
+      <span class="hljs-attr">"smartContractAddress"</span>: <span class="hljs-string">"0x0000000000000000000000000000000000000088"</span>,
+      <span class="hljs-attr">"tx"</span>: <span class="hljs-string">"0xf8f2d402c6b1cb5f891b687d69ddcd920e58d9e9fe002857cac0e7ce47998884"</span>,
+      <span class="hljs-attr">"event"</span>: <span class="hljs-string">"Unvote"</span>,
+      <span class="hljs-attr">"voter"</span>: <span class="hljs-string">"0x487d62d33467c4842c5e54eb370837e4e88bba0f"</span>,
+      <span class="hljs-attr">"owner"</span>: <span class="hljs-string">""</span>,
+      <span class="hljs-attr">"candidate"</span>: <span class="hljs-string">"0xfc5571921c6d3672e13b58ea23dea534f2b35fa0"</span>,
+      <span class="hljs-attr">"capacity"</span>: <span class="hljs-string">"10000999000000000000000"</span>,
+      <span class="hljs-attr">"blockNumber"</span>: <span class="hljs-number">763397</span>,
+      <span class="hljs-attr">"createdAt"</span>: <span class="hljs-string">"2018-12-27T09:55:21.000Z"</span>,
+      <span class="hljs-attr">"__v"</span>: <span class="hljs-number">0</span>
+    }
+  ],
+  <span class="hljs-attr">"total"</span>: <span class="hljs-number">100</span>
+}
+
+</code></pre>
+<h3 id="properties">Properties</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Restrictions</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>items</td>
+<td>[object]</td>
+<td>false</td>
+<td>none</td>
+<td>Candidate's transactions array</td>
+</tr>
+<tr>
+<td>total</td>
+<td>number</td>
+<td>false</td>
+<td>none</td>
+<td>Number of candidate</td>
+</tr>
+</tbody>
+</table>
+<!-- Renderer: Shins v2.3.2-3 -->
+      </div>
+      <div class="dark-box">
+        
+          <div class="lang-selector">
+            
+              
+                <a href="#" data-language-name="shell">cURL</a>
+              
+            
+              
+                <a href="#" data-language-name="javascript--nodejs">Node.JS</a>
+              
+            
+              
+                <a href="#" data-language-name="go">GO</a>
+              
+            
+              
+                <a href="#" data-language-name="ruby">Ruby</a>
+              
+            
+              
+                <a href="#" data-language-name="python">Python</a>
+              
+            
+          </div>
+        
+      </div>
+    </div>
+  </body>
+</html>
