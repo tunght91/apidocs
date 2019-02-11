@@ -14,6 +14,230 @@ headingLevel: 2
 
 ---
 
+<h1 id="tomochain-apis">TomoChain APIs v1.0.0</h1>
+
+> Scroll down for code samples, example requests and responses. Select a language for code samples from the tabs above or the mobile navigation menu.
+
+Happy to code TomoChainAPIs
+
+License: <a href="https://github.com/tomochain/tomochain">Github</a>
+
+## eth_accounts
+
+Returns a list of addresses owned by client.
+
+> Code samples
+
+```shell
+curl https://rpc.tomochain.com \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_accounts","params":[],"id":1}'
+```
+
+### RESPONSE
+
+#### RESULT FIELDS
+
+- `ADDRESSES` - arrays of hex codes as strings representing the addresses owned by the client
+
+NOTE: While this JSON-RPC method is supported by Infura, it will *not* return any accounts.  Infura does not support "unlocking" accounts.  Instead, users should send already signed raw 
+transactions using `eth_sendRawTransaction`.
+
+> Example responses
+
+> 200 Response
+
+```js
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": []
+}
+```
+
+## eth_blockNumber
+
+Returns the current "latest" block number.
+
+> Code samples
+
+```shell
+curl https://rpc.tomochain.com \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_blockNumber","params": [],"id":1}'
+```
+
+### RESPONSE
+
+- `BLOCK NUMBER` - a hex code of an integer representing the current block number the client is on.
+
+> Example responses
+
+> 200 Response
+
+```js
+
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": "0x65a8db"
+}
+```
+
+## eth_call
+
+Executes a new message call immediately without creating a transaction on the block chain.
+
+#### REQUEST PAYLOAD
+- `TRANSACTION CALL OBJECT` _[required]_
+- `from`:  _[optional]_ 20 Bytes - The address the transaction is sent from.
+- `to`: 20 Bytes - The address the transaction is directed to.
+- `gas`: _[optional]_ Integer of the gas provided for the transaction execution. eth_call consumes zero gas, but this parameter may be needed by some executions.
+- `gasPrice`: _[optional]_ Integer of the gasPrice used for each paid gas
+- `value`: _[optional]_ Integer of the value sent with this transaction
+- `data`: _[optional]_ Hash of the method signature and encoded parameters. For details see Ethereum Contract ABI
+- `BLOCK PARAMETER` _[required]_ - an integer block number, or the string "latest", "earliest" or "pending", see the [default block parameter](https://github.com/ethereum/wiki/wiki/JSON-RPC#the-default-block-parameter)
+
+> Code samples
+
+```shell
+curl https://rpc.tomochain.com \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_call","params": [{"from": "0xb60e8dd61c5d32be8058bb8eb970870f07233155","to": "0xd46e8dd67c5d32be8058bb8eb970870f07244567","gas": "0x76c0","gasPrice": "0x9184e72a000","value": "0x9184e72a","data": "0xd46e8dd67c5d32be8d46e8dd67c5d32be8058bb8eb970870f072445675058bb8eb970870f072445675"}, "latest"],"id":1}'
+    
+```
+
+### RESPONSE
+
+#### RESULT FIELDS
+- `RETURN VALUE` - the return value of the executed contract method.
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": "0x"
+}
+```
+
+## eth_estimateGas
+
+Generates and returns an estimate of how much gas is necessary to allow the transaction to complete. The transaction will not be added to the blockchain. Note that the estimate may be significantly more than the amount of gas actually used by the transaction, for a variety of reasons including EVM mechanics and node performance.
+
+#### REQUEST PAYLOAD
+- `TRANSACTION CALL OBJECT` _[required]_
+- `from`:  _[optional]_ 20 Bytes - The address the transaction is sent from.
+- `to`: 20 Bytes - The address the transaction is directed to.
+- `gas`: _[optional]_ Integer of the gas provided for the transaction execution. eth_estimateGas consumes zero gas, but this parameter may be needed by some executions.
+- `gasPrice`: _[optional]_ Integer of the gasPrice used for each paid gas
+- `value`: _[optional]_ Integer of the value sent with this transaction
+- `data`: _[optional]_ Hash of the method signature and encoded parameters. For details see Ethereum Contract ABI
+
+If no gas limit is specified geth uses the block gas limit from the pending block as an upper bound. As a result the returned estimate might not be enough to executed the call/transaction when the amount of gas is higher than the pending block gas limit.
+
+> Code samples
+
+```shell
+curl https://rpc.tomochain.com \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_estimateGas","params": [{"from": "0xb60e8dd61c5d32be8058bb8eb970870f07233155","to": "0xd46e8dd67c5d32be8058bb8eb970870f07244567","gas": "0x76c0","gasPrice": "0x9184e72a000","value": "0x9184e72a","data": "0xd46e8dd67c5d32be8d46e8dd67c5d32be8058bb8eb970870f072445675058bb8eb970870f072445675"}],"id":1}'
+
+```
+
+
+### RESPONSE
+
+#### RESULT FIELDS
+- `GAS USED` - the amount of gas used.
+
+> Example response
+
+> 200 Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": "0x5cec"
+}
+```
+
+## eth_gasPrice
+
+Returns the current gas price in wei.
+
+> Code samples
+
+```shell
+curl https://rpc.tomochain.com \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_gasPrice","params": [],"id":1}'
+
+```
+
+### RESPONSE
+
+#### RESULT FIELDS
+- `GAS PRICE` - a hex code of an integer representing the current gas price in wei.
+
+> Example response
+
+> 200 Response
+
+```js
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": "0x12a05f200"
+}
+```
+
+## eth_getBalance
+
+Returns the balance of the account of given address.
+
+#### REQUEST PARAMS
+- `ADDRESS` _[required]_ - a string representing the address (20 bytes) to check for balance
+
+- `BLOCK PARAMETER` _[required]_ - an integer block number, or the string "latest", "earliest" or "pending", see the [default block parameter](https://github.com/ethereum/wiki/wiki/JSON-RPC#the-default-block-parameter)
+
+> Code samples 
+
+```shell
+curl https://rpc.tomochain.com \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"jsonrpc":"2.0","method":"eth_getBalance","params": ["0xc94770007dda54cF92009BFF0dE90c06F603a09f", "latest"],"id":1}'
+
+```
+
+### RESPONSE
+
+#### RESULT FIELDS
+- `BALANCE` - integer of the current balance in wei.
+
+> Example response
+
+> 200 Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": "0x2fe84e3113d7b"
+}
+```
+
+
+
 <h1 id="tomomaster-apis">TomoMaster APIs v1.0.0</h1>
 
 > Scroll down for code samples, example requests and responses. Select a language for code samples from the tabs above or the mobile navigation menu.
@@ -1815,232 +2039,3 @@ This operation does not require authentication
 |---|---|---|---|---|
 |items|[object]|false|none|Candidate's transactions array|
 |total|number|false|none|Number of candidate|
-
-
-<h1 id="tomochain-apis">TomoChain APIs v1.0.0</h1>
-
-> Scroll down for code samples, example requests and responses. Select a language for code samples from the tabs above or the mobile navigation menu.
-
-Happy to code TomoChainAPIs
-
-License: <a href="https://github.com/tomochain/tomochain">Github</a>
-
-<h1 id="tomochain-apis-tomochain">TomoChain Protocol</h1>
-
-TomoChain Protocol
-
-## eth_accounts
-
-Returns a list of addresses owned by client.
-
-> Code samples
-
-```shell
-curl https://rpc.tomochain.com \
-    -X POST \
-    -H "Content-Type: application/json" \
-    -d '{"jsonrpc":"2.0","method":"eth_accounts","params":[],"id":1}'
-```
-
-### RESPONSE
-
-#### RESULT FIELDS
-
-- `ADDRESSES` - arrays of hex codes as strings representing the addresses owned by the client
-
-NOTE: While this JSON-RPC method is supported by Infura, it will *not* return any accounts.  Infura does not support "unlocking" accounts.  Instead, users should send already signed raw 
-transactions using `eth_sendRawTransaction`.
-
-> Example responses
-
-> 200 Response
-
-```js
-{
-  "jsonrpc": "2.0",
-  "id": 1,
-  "result": []
-}
-```
-
-## eth_blockNumber
-
-Returns the current "latest" block number.
-
-> Code samples
-
-```shell
-curl https://rpc.tomochain.com \
-    -X POST \
-    -H "Content-Type: application/json" \
-    -d '{"jsonrpc":"2.0","method":"eth_blockNumber","params": [],"id":1}'
-```
-
-### RESPONSE
-
-- `BLOCK NUMBER` - a hex code of an integer representing the current block number the client is on.
-
-> Example responses
-
-> 200 Response
-
-```js
-
-  "jsonrpc": "2.0",
-  "id": 1,
-  "result": "0x65a8db"
-}
-```
-
-## eth_call
-
-Executes a new message call immediately without creating a transaction on the block chain.
-
-#### REQUEST PAYLOAD
-- `TRANSACTION CALL OBJECT` _[required]_
-- `from`:  _[optional]_ 20 Bytes - The address the transaction is sent from.
-- `to`: 20 Bytes - The address the transaction is directed to.
-- `gas`: _[optional]_ Integer of the gas provided for the transaction execution. eth_call consumes zero gas, but this parameter may be needed by some executions.
-- `gasPrice`: _[optional]_ Integer of the gasPrice used for each paid gas
-- `value`: _[optional]_ Integer of the value sent with this transaction
-- `data`: _[optional]_ Hash of the method signature and encoded parameters. For details see Ethereum Contract ABI
-- `BLOCK PARAMETER` _[required]_ - an integer block number, or the string "latest", "earliest" or "pending", see the [default block parameter](https://github.com/ethereum/wiki/wiki/JSON-RPC#the-default-block-parameter)
-
-> Code samples
-
-```shell
-curl https://rpc.tomochain.com \
-    -X POST \
-    -H "Content-Type: application/json" \
-    -d '{"jsonrpc":"2.0","method":"eth_call","params": [{"from": "0xb60e8dd61c5d32be8058bb8eb970870f07233155","to": "0xd46e8dd67c5d32be8058bb8eb970870f07244567","gas": "0x76c0","gasPrice": "0x9184e72a000","value": "0x9184e72a","data": "0xd46e8dd67c5d32be8d46e8dd67c5d32be8058bb8eb970870f072445675058bb8eb970870f072445675"}, "latest"],"id":1}'
-    
-```
-
-### RESPONSE
-
-#### RESULT FIELDS
-- `RETURN VALUE` - the return value of the executed contract method.
-
-> Example responses
-
-> 200 Response
-
-```json
-{
-  "jsonrpc": "2.0",
-  "id": 1,
-  "result": "0x"
-}
-```
-
-## eth_estimateGas
-
-Generates and returns an estimate of how much gas is necessary to allow the transaction to complete. The transaction will not be added to the blockchain. Note that the estimate may be significantly more than the amount of gas actually used by the transaction, for a variety of reasons including EVM mechanics and node performance.
-
-#### REQUEST PAYLOAD
-- `TRANSACTION CALL OBJECT` _[required]_
-- `from`:  _[optional]_ 20 Bytes - The address the transaction is sent from.
-- `to`: 20 Bytes - The address the transaction is directed to.
-- `gas`: _[optional]_ Integer of the gas provided for the transaction execution. eth_estimateGas consumes zero gas, but this parameter may be needed by some executions.
-- `gasPrice`: _[optional]_ Integer of the gasPrice used for each paid gas
-- `value`: _[optional]_ Integer of the value sent with this transaction
-- `data`: _[optional]_ Hash of the method signature and encoded parameters. For details see Ethereum Contract ABI
-
-If no gas limit is specified geth uses the block gas limit from the pending block as an upper bound. As a result the returned estimate might not be enough to executed the call/transaction when the amount of gas is higher than the pending block gas limit.
-
-> Code samples
-
-```shell
-curl https://rpc.tomochain.com \
-    -X POST \
-    -H "Content-Type: application/json" \
-    -d '{"jsonrpc":"2.0","method":"eth_estimateGas","params": [{"from": "0xb60e8dd61c5d32be8058bb8eb970870f07233155","to": "0xd46e8dd67c5d32be8058bb8eb970870f07244567","gas": "0x76c0","gasPrice": "0x9184e72a000","value": "0x9184e72a","data": "0xd46e8dd67c5d32be8d46e8dd67c5d32be8058bb8eb970870f072445675058bb8eb970870f072445675"}],"id":1}'
-
-```
-
-
-### RESPONSE
-
-#### RESULT FIELDS
-- `GAS USED` - the amount of gas used.
-
-> Example response
-
-> 200 OK 
-
-```json
-{
-  "jsonrpc": "2.0",
-  "id": 1,
-  "result": "0x5cec"
-}
-```
-
-## eth_gasPrice
-
-Returns the current gas price in wei.
-
-> Code samples
-
-```shell
-curl https://rpc.tomochain.com \
-    -X POST \
-    -H "Content-Type: application/json" \
-    -d '{"jsonrpc":"2.0","method":"eth_gasPrice","params": [],"id":1}'
-
-```
-
-### RESPONSE
-
-#### RESULT FIELDS
-- `GAS PRICE` - a hex code of an integer representing the current gas price in wei.
-
-> Example response
-
-> 200 OK
-
-```js
-{
-  "jsonrpc": "2.0",
-  "id": 1,
-  "result": "0x12a05f200"
-}
-```
-
-## eth_getBalance
-
-Returns the balance of the account of given address.
-
-#### REQUEST PARAMS
-- `ADDRESS` _[required]_ - a string representing the address (20 bytes) to check for balance
-
-- `BLOCK PARAMETER` _[required]_ - an integer block number, or the string "latest", "earliest" or "pending", see the [default block parameter](https://github.com/ethereum/wiki/wiki/JSON-RPC#the-default-block-parameter)
-
-> Code samples 
-
-```shell
-curl https://rpc.tomochain.com \
-    -X POST \
-    -H "Content-Type: application/json" \
-    -d '{"jsonrpc":"2.0","method":"eth_getBalance","params": ["0xc94770007dda54cF92009BFF0dE90c06F603a09f", "latest"],"id":1}'
-
-```
-
-### RESPONSE
-
-#### RESULT FIELDS
-- `BALANCE` - integer of the current balance in wei.
-
-> Example response
-
-> 200 OK
-
-```json
-{
-  "jsonrpc": "2.0",
-  "id": 1,
-  "result": "0x2fe84e3113d7b"
-}
-```
-
-
