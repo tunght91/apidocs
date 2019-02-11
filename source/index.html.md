@@ -18,9 +18,13 @@ headingLevel: 2
 
 > Scroll down for code samples, example requests and responses. Select a language for code samples from the tabs above or the mobile navigation menu.
 
-Happy to code TomoChainAPIs
+Happy to code TomoChain APIs
 
 License: <a href="https://github.com/tomochain/tomochain">Github</a>
+
+<h1 id="tomochain-apis-json-rpc">JSON-RPC</h1>
+
+TomoChain JSON-RPC Protocol
 
 ## eth_accounts
 
