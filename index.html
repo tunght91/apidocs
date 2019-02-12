@@ -44,6 +44,17 @@ window.onpopstate = function() {
   </head>
 
   <body data-languages="[&quot;shell&quot;,&quot;javascript--nodejs&quot;,&quot;go&quot;,&quot;ruby&quot;,&quot;python&quot;]">
+    <div class="navbar-container">
+      <nav class="navbar">
+        <div style="background-image: url(source/images/logo.png)" class="logo"></div>
+        <ul>
+          <li><a href="https://tomochain.com">TomoChain</a></li>
+          <li><a href="https://tomochain.com/blog/">Blog</a></li>
+          <li><a href="https://gitter.im/tomochain/tomochain">Gitter</a></li>
+          <li><a href="https://github.com/tomochain">Github</a></li>
+        </ul>
+      </nav>
+    </div>
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -51,7 +62,6 @@ window.onpopstate = function() {
       </span>
     </a>
     <div class="toc-wrapper">
-      <img src="source/images/logo.png" class="logo" alt="Logo">
       
         <div class="lang-selector">
           
@@ -84,218 +94,218 @@ window.onpopstate = function() {
         <ul class="search-results"></ul>
       
       <div id="toc" class="toc-list-h1">
-	  	<ul class="toc-list-h1">
-        
-          <li>
-            <a href="#tomochain-apis" class="toc-h1 toc-link" data-title="TomoChain APIs v1.0.0">TomoChain APIs v1.0.0</a>
-            
-          </li>
-        
-          <li>
-            <a href="#tomochain-apis-json-rpc" class="toc-h1 toc-link" data-title="JSON-RPC">JSON-RPC</a>
-            
-              <ul class="toc-list-h2">
-                
-                  <li>
-                    <a href="#eth_accounts" class="toc-h2 toc-link" data-title="eth_accounts">eth_accounts</a>
-                    
-                  </li>
-                
-                  <li>
-                    <a href="#eth_blocknumber" class="toc-h2 toc-link" data-title="eth_blockNumber">eth_blockNumber</a>
-                    
-                  </li>
-                
-                  <li>
-                    <a href="#eth_call" class="toc-h2 toc-link" data-title="eth_call">eth_call</a>
-                    
-                  </li>
-                
-                  <li>
-                    <a href="#eth_estimategas" class="toc-h2 toc-link" data-title="eth_estimateGas">eth_estimateGas</a>
-                    
-                  </li>
-                
-                  <li>
-                    <a href="#eth_gasprice" class="toc-h2 toc-link" data-title="eth_gasPrice">eth_gasPrice</a>
-                    
-                  </li>
-                
-                  <li>
-                    <a href="#eth_getbalance" class="toc-h2 toc-link" data-title="eth_getBalance">eth_getBalance</a>
-                    
-                  </li>
-                
-              </ul>
-            
-          </li>
-        
-          <li>
-            <a href="#tomomaster-apis" class="toc-h1 toc-link" data-title="TomoMaster APIs v1.0.0">TomoMaster APIs v1.0.0</a>
-            
-          </li>
-        
-          <li>
-            <a href="#tomomaster-apis-config" class="toc-h1 toc-link" data-title="Config">Config</a>
-            
-              <ul class="toc-list-h2">
-                
-                  <li>
-                    <a href="#get-tomomaster-application-configuration" class="toc-h2 toc-link" data-title="Get TomoMaster Application Configuration">Get TomoMaster Application Configuration</a>
-                    
-                  </li>
-                
-              </ul>
-            
-          </li>
-        
-          <li>
-            <a href="#tomomaster-apis-candidates" class="toc-h1 toc-link" data-title="Candidates">Candidates</a>
-            
-              <ul class="toc-list-h2">
-                
-                  <li>
-                    <a href="#get-candidates-information" class="toc-h2 toc-link" data-title="Get candidates information">Get candidates information</a>
-                    
-                  </li>
-                
-                  <li>
-                    <a href="#get-candidate-s-information" class="toc-h2 toc-link" data-title="Get candidate&#39;s information">Get candidate&#39;s information</a>
-                    
-                  </li>
-                
-                  <li>
-                    <a href="#get-voters-who-voted-for-the-candidate" class="toc-h2 toc-link" data-title="Get voters who voted for the candidate">Get voters who voted for the candidate</a>
-                    
-                  </li>
-                
-                  <li>
-                    <a href="#masternode-checking" class="toc-h2 toc-link" data-title="Masternode checking">Masternode checking</a>
-                    
-                  </li>
-                
-                  <li>
-                    <a href="#candidate-checking" class="toc-h2 toc-link" data-title="Candidate checking">Candidate checking</a>
-                    
-                  </li>
-                
-                  <li>
-                    <a href="#get-reward-of-candidate" class="toc-h2 toc-link" data-title="Get reward of candidate">Get reward of candidate</a>
-                    
-                  </li>
-                
-              </ul>
-            
-          </li>
-        
-          <li>
-            <a href="#tomomaster-apis-voters" class="toc-h1 toc-link" data-title="Voters">Voters</a>
-            
-              <ul class="toc-list-h2">
-                
-                  <li>
-                    <a href="#get-voted-candidates" class="toc-h2 toc-link" data-title="Get voted candidates">Get voted candidates</a>
-                    
-                  </li>
-                
-                  <li>
-                    <a href="#get-reward-of-voter" class="toc-h2 toc-link" data-title="Get reward of voter">Get reward of voter</a>
-                    
-                  </li>
-                
-              </ul>
-            
-          </li>
-        
-          <li>
-            <a href="#tomomaster-apis-transaction" class="toc-h1 toc-link" data-title="Transaction">Transaction</a>
-            
-              <ul class="toc-list-h2">
-                
-                  <li>
-                    <a href="#get-transactions-of-a-candidate" class="toc-h2 toc-link" data-title="Get transactions of a candidate">Get transactions of a candidate</a>
-                    
-                  </li>
-                
-                  <li>
-                    <a href="#get-transactions-of-a-voter" class="toc-h2 toc-link" data-title="Get transactions of a voter">Get transactions of a voter</a>
-                    
-                  </li>
-                
-              </ul>
-            
-          </li>
-        
-          <li>
-            <a href="#schemas" class="toc-h1 toc-link" data-title="Schemas">Schemas</a>
-            
-              <ul class="toc-list-h2">
-                
-                  <li>
-                    <a href="#tocsconfig" class="toc-h2 toc-link" data-title="config">config</a>
-                    
-                  </li>
-                
-                  <li>
-                    <a href="#tocscandidate" class="toc-h2 toc-link" data-title="candidate">candidate</a>
-                    
-                  </li>
-                
-                  <li>
-                    <a href="#tocscandidatedetail" class="toc-h2 toc-link" data-title="candidateDetail">candidateDetail</a>
-                    
-                  </li>
-                
-                  <li>
-                    <a href="#tocscandidaterewards" class="toc-h2 toc-link" data-title="candidateRewards">candidateRewards</a>
-                    
-                  </li>
-                
-                  <li>
-                    <a href="#tocscandidatevoter" class="toc-h2 toc-link" data-title="candidateVoter">candidateVoter</a>
-                    
-                  </li>
-                
-                  <li>
-                    <a href="#tocsvotercandidates" class="toc-h2 toc-link" data-title="voterCandidates">voterCandidates</a>
-                    
-                  </li>
-                
-                  <li>
-                    <a href="#tocsvoterrewards" class="toc-h2 toc-link" data-title="voterRewards">voterRewards</a>
-                    
-                  </li>
-                
-                  <li>
-                    <a href="#tocsismasternode" class="toc-h2 toc-link" data-title="isMasternode">isMasternode</a>
-                    
-                  </li>
-                
-                  <li>
-                    <a href="#tocsiscandidate" class="toc-h2 toc-link" data-title="isCandidate">isCandidate</a>
-                    
-                  </li>
-                
-                  <li>
-                    <a href="#tocstxcandidate" class="toc-h2 toc-link" data-title="txCandidate">txCandidate</a>
-                    
-                  </li>
-                
-                  <li>
-                    <a href="#tocstxvoter" class="toc-h2 toc-link" data-title="txVoter">txVoter</a>
-                    
-                  </li>
-                
-              </ul>
-            
-          </li>
-        
-		</ul>
-      </div>
-      
-        <ul class="toc-footer">
+        <ul class="toc-list-h1">
+          
+            <li>
+              <a href="#tomochain-apis" class="toc-h1 toc-link" data-title="TomoChain APIs v1.0.0">TomoChain APIs v1.0.0</a>
+              
+            </li>
+          
+            <li>
+              <a href="#tomochain-apis-json-rpc" class="toc-h1 toc-link" data-title="JSON-RPC">JSON-RPC</a>
+              
+                <ul class="toc-list-h2">
+                  
+                    <li>
+                      <a href="#eth_accounts" class="toc-h2 toc-link" data-title="eth_accounts">eth_accounts</a>
+                      
+                    </li>
+                  
+                    <li>
+                      <a href="#eth_blocknumber" class="toc-h2 toc-link" data-title="eth_blockNumber">eth_blockNumber</a>
+                      
+                    </li>
+                  
+                    <li>
+                      <a href="#eth_call" class="toc-h2 toc-link" data-title="eth_call">eth_call</a>
+                      
+                    </li>
+                  
+                    <li>
+                      <a href="#eth_estimategas" class="toc-h2 toc-link" data-title="eth_estimateGas">eth_estimateGas</a>
+                      
+                    </li>
+                  
+                    <li>
+                      <a href="#eth_gasprice" class="toc-h2 toc-link" data-title="eth_gasPrice">eth_gasPrice</a>
+                      
+                    </li>
+                  
+                    <li>
+                      <a href="#eth_getbalance" class="toc-h2 toc-link" data-title="eth_getBalance">eth_getBalance</a>
+                      
+                    </li>
+                  
+                </ul>
+              
+            </li>
+          
+            <li>
+              <a href="#tomomaster-apis" class="toc-h1 toc-link" data-title="TomoMaster APIs v1.0.0">TomoMaster APIs v1.0.0</a>
+              
+            </li>
+          
+            <li>
+              <a href="#tomomaster-apis-config" class="toc-h1 toc-link" data-title="Config">Config</a>
+              
+                <ul class="toc-list-h2">
+                  
+                    <li>
+                      <a href="#get-tomomaster-application-configuration" class="toc-h2 toc-link" data-title="Get TomoMaster Application Configuration">Get TomoMaster Application Configuration</a>
+                      
+                    </li>
+                  
+                </ul>
+              
+            </li>
+          
+            <li>
+              <a href="#tomomaster-apis-candidates" class="toc-h1 toc-link" data-title="Candidates">Candidates</a>
+              
+                <ul class="toc-list-h2">
+                  
+                    <li>
+                      <a href="#get-candidates-information" class="toc-h2 toc-link" data-title="Get candidates information">Get candidates information</a>
+                      
+                    </li>
+                  
+                    <li>
+                      <a href="#get-candidate-s-information" class="toc-h2 toc-link" data-title="Get candidate&#39;s information">Get candidate&#39;s information</a>
+                      
+                    </li>
+                  
+                    <li>
+                      <a href="#get-voters-who-voted-for-the-candidate" class="toc-h2 toc-link" data-title="Get voters who voted for the candidate">Get voters who voted for the candidate</a>
+                      
+                    </li>
+                  
+                    <li>
+                      <a href="#masternode-checking" class="toc-h2 toc-link" data-title="Masternode checking">Masternode checking</a>
+                      
+                    </li>
+                  
+                    <li>
+                      <a href="#candidate-checking" class="toc-h2 toc-link" data-title="Candidate checking">Candidate checking</a>
+                      
+                    </li>
+                  
+                    <li>
+                      <a href="#get-reward-of-candidate" class="toc-h2 toc-link" data-title="Get reward of candidate">Get reward of candidate</a>
+                      
+                    </li>
+                  
+                </ul>
+              
+            </li>
+          
+            <li>
+              <a href="#tomomaster-apis-voters" class="toc-h1 toc-link" data-title="Voters">Voters</a>
+              
+                <ul class="toc-list-h2">
+                  
+                    <li>
+                      <a href="#get-voted-candidates" class="toc-h2 toc-link" data-title="Get voted candidates">Get voted candidates</a>
+                      
+                    </li>
+                  
+                    <li>
+                      <a href="#get-reward-of-voter" class="toc-h2 toc-link" data-title="Get reward of voter">Get reward of voter</a>
+                      
+                    </li>
+                  
+                </ul>
+              
+            </li>
+          
+            <li>
+              <a href="#tomomaster-apis-transaction" class="toc-h1 toc-link" data-title="Transaction">Transaction</a>
+              
+                <ul class="toc-list-h2">
+                  
+                    <li>
+                      <a href="#get-transactions-of-a-candidate" class="toc-h2 toc-link" data-title="Get transactions of a candidate">Get transactions of a candidate</a>
+                      
+                    </li>
+                  
+                    <li>
+                      <a href="#get-transactions-of-a-voter" class="toc-h2 toc-link" data-title="Get transactions of a voter">Get transactions of a voter</a>
+                      
+                    </li>
+                  
+                </ul>
+              
+            </li>
+          
+            <li>
+              <a href="#schemas" class="toc-h1 toc-link" data-title="Schemas">Schemas</a>
+              
+                <ul class="toc-list-h2">
+                  
+                    <li>
+                      <a href="#tocsconfig" class="toc-h2 toc-link" data-title="config">config</a>
+                      
+                    </li>
+                  
+                    <li>
+                      <a href="#tocscandidate" class="toc-h2 toc-link" data-title="candidate">candidate</a>
+                      
+                    </li>
+                  
+                    <li>
+                      <a href="#tocscandidatedetail" class="toc-h2 toc-link" data-title="candidateDetail">candidateDetail</a>
+                      
+                    </li>
+                  
+                    <li>
+                      <a href="#tocscandidaterewards" class="toc-h2 toc-link" data-title="candidateRewards">candidateRewards</a>
+                      
+                    </li>
+                  
+                    <li>
+                      <a href="#tocscandidatevoter" class="toc-h2 toc-link" data-title="candidateVoter">candidateVoter</a>
+                      
+                    </li>
+                  
+                    <li>
+                      <a href="#tocsvotercandidates" class="toc-h2 toc-link" data-title="voterCandidates">voterCandidates</a>
+                      
+                    </li>
+                  
+                    <li>
+                      <a href="#tocsvoterrewards" class="toc-h2 toc-link" data-title="voterRewards">voterRewards</a>
+                      
+                    </li>
+                  
+                    <li>
+                      <a href="#tocsismasternode" class="toc-h2 toc-link" data-title="isMasternode">isMasternode</a>
+                      
+                    </li>
+                  
+                    <li>
+                      <a href="#tocsiscandidate" class="toc-h2 toc-link" data-title="isCandidate">isCandidate</a>
+                      
+                    </li>
+                  
+                    <li>
+                      <a href="#tocstxcandidate" class="toc-h2 toc-link" data-title="txCandidate">txCandidate</a>
+                      
+                    </li>
+                  
+                    <li>
+                      <a href="#tocstxvoter" class="toc-h2 toc-link" data-title="txVoter">txVoter</a>
+                      
+                    </li>
+                  
+                </ul>
+              
+            </li>
           
         </ul>
+      </div>
+      
+      <ul class="toc-footer">
+        
+      </ul>
       
     </div>
     <div class="page-wrapper">
