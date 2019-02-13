@@ -361,6 +361,17 @@ function render(inputStr, options, callback) {
                 return '<img src="'+imageSource+'" class="' + className + '" alt="' + altText + '">';
             }
         };
+        locals.favico = function(image) {
+            var imageSource = "source/images/favico.ico";
+            if (image) {
+                imageSource = "source/images/" + image;
+            }
+            if (globalOptions.inline) {
+                var imgContent = safeReadFileSync(path.join(__dirname, imageSource));
+                imageSource = getBase64ImageSource(imageSource, imgContent);
+            }
+            return '<link rel="shortcut icon" href="' + imageSource + '" />';
+        };
         locals.logo_image_tag = function () {
             if (!globalOptions.logo) return locals.image_tag('logo.png', 'Logo', 'logo', true);
             var imageSource = path.resolve(process.cwd(), globalOptions.logo);
