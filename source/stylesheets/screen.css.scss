@@ -58,8 +58,10 @@ html, body {
   bottom: 0;
   width: $nav-width;
   background-color: $nav-bg;
+  border-right: 1px solid $nav-border;
   font-size: 13px;
-  font-weight: bold;
+  font-weight: 500;
+  // font-weight: bold;
 
   // language selector for mobile devices
   .lang-selector {
@@ -154,12 +156,16 @@ html, body {
   .toc-link.active {
     background-color: $nav-active-bg;
     color: $nav-active-text;
+    border-left: 4px solid $nav-active-text;
+    padding-left: $nav-padding - 4px;
+    font-weight: bold;
   }
 
   // this is parent links of the currently selected ToC entry
   .toc-link.active-parent {
     background-color: $nav-active-parent-bg;
     color: $nav-active-parent-text;
+    font-weight: bold;
   }
 
   .toc-list-h2 {
@@ -173,10 +179,14 @@ html, body {
     font-size: 12px;
   }
 
+  .toc-h2.active {
+    padding-left: $nav-padding + $nav-indent - 4px;
+  }
+
   .toc-footer {
     padding: 1em 0;
     margin-top: 1em;
-    border-top: 1px dashed $nav-footer-border-color;
+    // border-top: 1px dashed $nav-footer-border-color;
 
     li,a {
       color: $nav-text;
@@ -272,7 +282,7 @@ html, body {
   .lang-selector {
     position: fixed;
     z-index: 50;
-    border-bottom: 5px solid $lang-select-active-bg;
+    border-bottom: 2px solid $lang-select-active-bg;
   }
 }
 
@@ -350,9 +360,9 @@ html, body {
     padding-bottom: 0.5em;
     margin-bottom: $h1-margin-bottom;
     margin-top: 2em;
-    border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
-    background-color: #fdfdfd;
+    // border-top: 1px solid #ccc;
+    border-bottom: 1px solid rgba(204,204,204,.6);
+    background-color: #ffffff;
   }
 
   h1:first-child, div:first-child + h1 {
@@ -365,7 +375,7 @@ html, body {
     font-size: 19px;
     margin-top: 4em;
     margin-bottom: 0;
-    border-top: 1px solid #ccc;
+    border-top: 1px solid rgba(204,204,204,.6);
     padding-top: 1.2em;
     padding-bottom: 1.2em;
     background-image: linear-gradient(to bottom, rgba(#fff, 0.2), rgba(#fff, 0));
@@ -557,7 +567,7 @@ html, body {
 
 @media (max-width: $tablet-width) {
   .toc-wrapper {
-    left: -$nav-width;
+    left: -$nav-width - 1px;
 
     &.open {
       left: 0;
