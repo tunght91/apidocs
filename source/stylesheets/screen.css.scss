@@ -63,6 +63,10 @@ html, body {
   font-weight: 500;
   // font-weight: bold;
 
+  .toc-navbar {
+    display: none;
+  }
+
   // language selector for mobile devices
   .lang-selector {
     display: none;
@@ -572,7 +576,21 @@ html, body {
     &.open {
       left: 0;
     }
+
+    .toc-navbar {
+      display: block;
+      background: #1c203b;
+      padding: $nav-padding;
+
+      li a {
+        color: #fff;
+        text-decoration: none;
+        text-transform: uppercase;
+        font-weight: 600;
+      }
+    }
   }
+
 
   .page-wrapper {
     margin-left: 0;
@@ -655,9 +673,9 @@ nav {
     width: 100%;
   }
   .logo {
-    height: 50px;
-    width: 200px;
-    margin: 10px auto;
+    height: 40px;
+    width: 150px;
+    margin: 15px auto;
     background-repeat: no-repeat;
     background-position: center center;
     background-size: contain;
@@ -703,7 +721,7 @@ nav {
 @media (min-width: 48em) {
   nav .logo {
     display: inline-block;
-    margin: 10px 0 0 15px;
+    margin: 15px 0 0 15px;
   }
 }
 
