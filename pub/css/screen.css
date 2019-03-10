@@ -667,7 +667,7 @@ html, body {
   .content h2 {
     font-size: 19px;
     margin-bottom: 0;
-    padding-top: 5em;
+    padding-top: 3.7em;
     padding-bottom: 1.2em;
     background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0)); }
   .content h1 + h2, .content h1 + div + h2 {
